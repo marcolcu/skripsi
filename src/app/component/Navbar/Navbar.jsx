@@ -1,9 +1,11 @@
 "use client";
-import Link from "next/link";
+import { useAppContext } from "@/app/provider";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { state, dispatch } = useAppContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,15 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    dispatch({
+      token: null,
+      user: null,
+    });
+    toast.success("Successfully logged out");
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px]">
@@ -70,20 +81,35 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <a
-            href="/login"
-            className="rounded-full text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black font-semibold hover:bg-gray-800 text-white border-2 border-transparent hover:underline hover:underline-offset-2 decoration-2"
-          >
-            Sign up
-          </a>
-          <a
-            href="/login"
-            className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
-          >
-            Log in
-          </a>
-        </div>
+        {state?.token ? (
+          <div className="hidden lg:flex items-center gap-4">
+            <span className="font-semibold">
+              Welcome, {state?.user?.firstName}
+            </span>
+            <a
+              href="/"
+              className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
+              onClick={handleLogout}
+            >
+              Log out
+            </a>
+          </div>
+        ) : (
+          <div className="hidden lg:flex items-center gap-4">
+            <a
+              href="/login?register"
+              className="rounded-full text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black font-semibold hover:bg-gray-800 text-white border-2 border-transparent hover:underline hover:underline-offset-2 decoration-2"
+            >
+              Sign up
+            </a>
+            <a
+              href="/login"
+              className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
+            >
+              Log in
+            </a>
+          </div>
+        )}
       </header>
     </div>
   );

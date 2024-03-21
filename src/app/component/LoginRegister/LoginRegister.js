@@ -66,6 +66,14 @@ export const Input = styled.input`
   width: 100%;
 `;
 
+export const Select = styled.select`
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+`;
+
 export const Button = styled.button`
   border-radius: 20px;
   border: 1px solid #d2e9e9;
