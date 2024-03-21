@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
@@ -71,13 +72,13 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-4">
           <a
-            href="#"
+            href="/login"
             className="rounded-full text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black font-semibold hover:bg-gray-800 text-white border-2 border-transparent hover:underline hover:underline-offset-2 decoration-2"
           >
             Sign up
           </a>
           <a
-            href="#"
+            href="/login"
             className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
           >
             Log in

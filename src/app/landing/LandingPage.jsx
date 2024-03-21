@@ -7,7 +7,6 @@ import SkeletonLoading from "./section/SkeletonLoading";
 const LandingPage = () => {
   const [loading, setLoading] = useState(true);
 
-  // Simulate a delay to showcase the loading skeleton
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
