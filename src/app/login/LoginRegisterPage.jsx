@@ -44,7 +44,7 @@ function App() {
   });
 
   const { email, password, firstname, lastname, phoneNo, gender } = formData;
-  
+
   useEffect(() => {
     const welcomeTimer = setTimeout(() => {
       setShowWelcome(false);
@@ -65,6 +65,18 @@ function App() {
       toast.error(login?.errorMessage);
     }
   }, [login]);
+
+  useEffect(() => {
+    if (register?.success) {
+      const loginButton = document.getElementById("loginButton");
+      if (loginButton) {
+        loginButton.click();
+      }
+      toast.success("Successfully registered");
+    } else {
+      toast.error(register?.errorMessage);
+    }
+  }, [register]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -101,14 +113,6 @@ function App() {
         gender: formData.gender,
       },
     });
-    if (register?.success) {
-      const loginButton = document.getElementById("loginButton");
-      if (loginButton) {
-        loginButton.click();
-      }
-    } else {
-      toast.error(register?.errorMessage);
-    }
   };
 
   const handleLogin = () => {
