@@ -108,7 +108,7 @@ function App() {
         email: formData.email,
         password: formData.password,
         firstName: formData.firstname,
-        lastname: formData.lastname,
+        lastName: formData.lastname,
         phoneNo: formData.phoneNo,
         gender: formData.gender,
       },

@@ -1,11 +1,14 @@
 "use client";
 import { useAppContext } from "@/app/provider";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { state, dispatch } = useAppContext();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +25,7 @@ const Navbar = () => {
 
   const handleLogout = (event) => {
     event.preventDefault();
+    router.push("/");
     dispatch({
       token: null,
       user: null,
@@ -30,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px]">
+    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-[100]">
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
           scrolled ? "backdrop-blur-2xl bg-white/30 " : "bg-cyan-50"
@@ -54,22 +58,45 @@ const Navbar = () => {
                 <span className="font-semibold"> Home</span>
               </a>
             </li>
-            <li>
-              <a
-                href="/about"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-              >
-                <span className="font-semibold">About Us</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="/features"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-              >
-                <span className="font-semibold">Features</span>
-              </a>
-            </li>
+            {state?.token ? (
+              <>
+                <li>
+                  <a
+                    href="#"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Find a Place</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Find an Event</span>
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <a
+                    href="/about"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">About Us</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/features"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Features</span>
+                  </a>
+                </li>
+              </>
+            )}
             <li>
               <a
                 href="/support"
