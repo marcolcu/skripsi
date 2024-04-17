@@ -1,0 +1,70 @@
+#checkmark_group {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#success-sprite {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#checkmark_circle {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#check-bg {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+#phone {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line1 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line2 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line3 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line4 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line5 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line6 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line7 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#line8 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+#star_1 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#star_2 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#star_3 {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+.center-svg {
+  margin: 0 auto;
+}

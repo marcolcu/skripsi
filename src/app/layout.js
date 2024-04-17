@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./component/Navbar/Navbar";
 import { Providers } from "./provider";
 import { ToastContainer } from "react-toastify";
+import Footer from "./component/Footer/Footer";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
