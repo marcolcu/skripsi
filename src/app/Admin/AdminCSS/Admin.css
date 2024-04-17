@@ -1,0 +1,136 @@
+/* Custom Start */
+.base-color {
+  background-color: #ecfeff;
+}
+.grid-container-1to1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+/* Custom End */
+
+/* Modal Start */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modalContainer {
+  /* min-width: 400px;
+  min-height: 200px; */
+  z-index: 899;
+  width: 60%;
+  background-color: white;
+  .textareaContainer {
+    margin: 0 8rem;
+  }
+  @media (max-width: 1024px) {
+    .textareaContainer {
+      margin: 0 4rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .textareaContainer {
+      margin: 0 2rem;
+    }
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .closeBtn {
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
+.modalContainer2 {
+  /* min-width: 400px;
+  min-height: 200px; */
+  width: 80%;
+  background-color: white;
+  .textareaContainer {
+    margin: 0 8rem;
+  }
+  @media (max-width: 1024px) {
+    .textareaContainer {
+      margin: 0 4rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .textareaContainer {
+      margin: 0 2rem;
+    }
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .closeBtn {
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
+
+/* Modal End */
+
+/* AdminLogin Start */
+.adminLoginBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  opacity: 1;
+  z-index: 1;
+}
+
+.adminLoginContainer {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 50px;
+}
+/* AdminLogin End */
+
+/* AdminHome Start */
+.grid-container-AdminHome {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+}
+/* AdminHome End */
+
+/* AdminCreateVenue, AdminCreateEvent, AdminEditVenue, AdminEditEvent Start */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.DisplayPicture {
+  display: block;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-image: url("https://fakeimg.pl/600x400");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* AdminCreateVenue, AdminCreateEvent, AdminEditVenue, AdminEditEvent End */
