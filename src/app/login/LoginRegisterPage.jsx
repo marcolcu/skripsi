@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useLogin, useRegister } from "@/services/useUserServices";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AddAlertTwoTone } from "@mui/icons-material";
 
 function App() {
   const [signIn, toggle] = useState(true);
@@ -55,12 +56,21 @@ function App() {
 
   useEffect(() => {
     if (login?.success) {
-      dispatch({
-        token: login?.value?.token,
-        user: login?.value,
-      });
-      toast.success("Successfully logged in");
-      router.push("/");
+      if (login?.value?.userRole === "ROLE_ADMIN") {
+        dispatch({
+          token: login?.value?.token,
+          user: login?.value,
+        });
+        toast.success("Successfully logged in");
+        router.push("/Admin/home");
+      } else {
+        dispatch({
+          token: login?.value?.token,
+          user: login?.value,
+        });
+        toast.success("Successfully logged in");
+        router.push("/");
+      }
     } else {
       toast.error(login?.errorMessage);
     }

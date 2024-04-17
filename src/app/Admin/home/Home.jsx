@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./AdminCSS/Admin.css";
-import EventCard from "./section/EventCard";
-import VenueCard from "./section/VenueCard";
-
+import "../AdminCSS/Admin.css";
+import EventCard from "../section/EventCard";
+import VenueCard from "../section/VenueCard";
 
 const AdminHome = () => {
   const [loading, setLoading] = useState(true);

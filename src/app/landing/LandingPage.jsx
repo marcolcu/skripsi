@@ -4,11 +4,21 @@ import BannerPage from "./section/BannerPage";
 import CurrentFav from "./section/CurrentFav";
 import SkeletonLoading from "./section/SkeletonLoading";
 import { useGetEvent } from "@/services/useEventServices";
+import { useAppContext } from "../provider";
+import { useRouter } from "next/navigation";
 
 const LandingPage = () => {
   const { fetchEvent, event, eventLoading } = useGetEvent();
   const [loading, setLoading] = useState(true);
   var events = event?.value;
+  const { state, dispatch } = useAppContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.user?.userRole === "ROLE_ADMIN") {
+      router.push("/Admin/home")
+    }
+  });
 
   useEffect(() => {
     fetchEvent({

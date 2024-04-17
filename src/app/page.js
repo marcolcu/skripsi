@@ -1,6 +1,6 @@
 import Image from "next/image";
 import LandingPage from "./landing/LandingPage";
-import AdminHome from "./Admin/Home";
+import AdminHome from "./Admin/home/Home";
 import AdminCreateVenue from "./Admin/CreateVenue";
 import AdminCreateEvent from "./Admin/CreateEvent";
 import AdminEditVenue from "./Admin/EditVenue";
@@ -19,9 +19,9 @@ export default function Home() {
   return (
     <>
       {/* <LoginRegister /> */}
-      {/* <LandingPage /> */}
+      <LandingPage />
 
-      <AdminHome />
+      {/* <AdminHome /> */}
       {/* <AdminEditVenue /> */}
       {/* <AdminEditEvent /> */}
       {/* <AdminCreateEvent /> */}
