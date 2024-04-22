@@ -16,11 +16,32 @@ const Confirmation = ({ event }) => {
     useEventRegistration();
 
   useEffect(() => {
+    if (eventRegistration?.success && eventRegistration?.value?.event?.free === false) {
+      postEventPayment({
+        header: {
+          Authorization: "Bearer " + state?.token,
+        },
+        body: {
+          userEmail: state?.user?.email,
+          eventId: state?.eventId,
+        },
+      });
+    } else if (eventRegistration?.success) {
+      dispatch({
+        registrationCode: eventRegistration?.value?.registrationCode,
+      });
+      router.push(
+        "/orders/event/" + eventRegistration?.value?.registrationCode
+      );
+    }
+  }, [eventRegistration?.success]);
+
+  useEffect(() => {
     if (eventRegistration?.success && eventPayment) {
       dispatch({
         registrationCode: eventRegistration?.value?.registrationCode,
       });
-      if (eventRegistration?.value?.free) {
+      if (eventRegistration?.value?.event?.free === true) {
         router.push(
           "/orders/event/" + eventRegistration?.value?.registrationCode
         );
@@ -42,15 +63,6 @@ const Confirmation = ({ event }) => {
 
   const payment = () => {
     postEventRegistration({
-      header: {
-        Authorization: "Bearer " + state?.token,
-      },
-      body: {
-        userEmail: state?.user?.email,
-        eventId: state?.eventId,
-      },
-    });
-    postEventPayment({
       header: {
         Authorization: "Bearer " + state?.token,
       },

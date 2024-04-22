@@ -217,9 +217,6 @@ function App() {
                 placeholder="Password"
                 onChange={handleChange}
               />
-              <Components.Anchor href="#">
-                Forgot your password?
-              </Components.Anchor>
               <Components.Button type="button" onClick={handleLogin}>
                 {loginLoading ? "Loading..." : "Login"}
               </Components.Button>

@@ -718,7 +718,7 @@ const Finish = () => {
         complete: function () {
           if (state?.registrationCode) {
             let statusMessage =
-              state?.statusPayment === "200" ? "success" : "failed";
+              state?.statusPayment === "200" ? "success" : "fail";
   
             postEventConfirmation({
               header: {

@@ -143,3 +143,24 @@ export const useEventRegisDetail = () => {
     eventRegisDetailIsError: isError || data?.status == "1",
   };
 };
+
+export const useGetEventBooking = () => {
+  const { fetchData, data, message, loading, status, error, isError } =
+    useGetData();
+
+  return {
+    fetchEventBooking: ({ header, option, queryParams }) =>
+      fetchData({
+        urlPath: "api/v1/events/public/get-user-registrations",
+        header: header,
+        option: option,
+        queryParams: queryParams,
+      }),
+    eventBooking: data,
+    eventBookingMessage: message,
+    eventBookingLoading: loading,
+    eventBookingStatus: status,
+    eventBookingError: error || data?.message,
+    eventBookingIsError: isError,
+  };
+};

@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Card from "./Card";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
 
-const CurrentFav = (event) => {
+const UpcomingEvent = (event) => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const data = event?.event;
 
@@ -16,11 +16,11 @@ const CurrentFav = (event) => {
 
   return (
     <main>
-      <div className="bg-white mb-5">
+      <div className="bg-white">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            {dataLoaded && <FontAwesomeIcon icon={faStar} />}
-            &nbsp;Current Fav
+            {dataLoaded && <FontAwesomeIcon icon={faTicket} />}
+            &nbsp;Upcoming Events
           </h2>
           <a href="#">Let's go &rarr;</a>
         </div>
@@ -40,4 +40,4 @@ const CurrentFav = (event) => {
   );
 };
 
-export default CurrentFav;
+export default UpcomingEvent;
