@@ -142,7 +142,7 @@ const EventDetailPage = ({ slug }) => {
                   <div
                     className={`${
                       eventDetail?.value?.free ? "bg-green-200" : "bg-red-200"
-                    } p-1 px-5 text-center rounded-full`}
+                    } p-1 px-5 text-center rounded-full mb-3`}
                   >
                     {eventDetail?.value?.free ? "Free Event" : "Paid Event"}
                   </div>
