@@ -24,11 +24,11 @@ const OrderDetail = ({ slug }) => {
           Authorization: "Bearer " + state?.token,
         },
         queryParams: {
-          registrationCode: state?.registrationCode,
+          registrationCode: slug,
         },
       });
     }
-  }, [state]);
+  }, [state, slug]);
 
   useEffect(() => {
     fetchTopEvent({

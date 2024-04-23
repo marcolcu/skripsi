@@ -1,15 +1,16 @@
 "use client";
 import { useAppContext } from "@/app/provider";
 import { useGetEventBooking } from "@/services/useEventServices";
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
 
 const MyEvents = () => {
   const { state, dispatch } = useAppContext();
+  const [loading, setLoading] = useState(true);
   const { fetchEventBooking, eventBooking, eventBookingLoading } =
     useGetEventBooking();
   const data = eventBooking?.value;
+  const skeletonRowCount = 5;
 
   useEffect(() => {
     if (state && state?.user?.email && state?.token) {
@@ -23,6 +24,12 @@ const MyEvents = () => {
       });
     }
   }, [state]);
+
+  useEffect(() => {
+    if (!eventBookingLoading) {
+      setLoading(false);
+    }
+  }, [eventBookingLoading]);
 
   const columns = [
     {
@@ -104,14 +111,46 @@ const MyEvents = () => {
 
   return (
     <div className="text-center flex items-center justify-center">
-      <div className="w-10/12">
-        <MUIDataTable
-          title={"My Event List"}
-          data={data}
-          columns={columns}
-          options={options}
-        />
-      </div>
+      {loading ? (
+        // Skeleton loading
+        <div className="text-center">
+          <table className=" divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200">
+              {Array.from({ length: skeletonRowCount }).map((_, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="bg-gray-300 h-6 w-[11rem] animate-pulse"></div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="w-10/12">
+          <MUIDataTable
+            title={"My Event List"}
+            data={data}
+            columns={columns}
+            options={options}
+          />
+        </div>
+      )}
     </div>
   );
 };

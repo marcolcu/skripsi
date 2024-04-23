@@ -101,7 +101,7 @@ const EventDetailPage = ({ slug }) => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-10">
-      {eventDetailLoading ? (
+      {loading ? (
         <EventDetailSkeleton />
       ) : (
         <>
