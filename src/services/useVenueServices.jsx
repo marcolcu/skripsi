@@ -124,3 +124,24 @@ export const useVenueBookingDetail = () => {
     venueBookingDetailIsError: isError || data?.status == "1",
   };
 };
+
+export const useVenueBookingList = () => {
+  const { fetchData, data, message, loading, status, error, isError } =
+    useGetData();
+
+  return {
+    fetchVenueBookingList: ({ header, option, queryParams, body }) =>
+      fetchData({
+        urlPath: "api/v1/venues/public/booking/get-by-user",
+        header,
+        option,
+        queryParams,
+        body,
+      }),
+    venueBookingList: data,
+    venueBookingListLoading: loading,
+    venueBookingListStatus: status,
+    venueBookingListError: error || data?.message,
+    venueBookingListIsError: isError || data?.status == "1",
+  };
+};
