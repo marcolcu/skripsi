@@ -1,4 +1,4 @@
-import MyVenues from "./VenueList";
+import MyVenues from "./MyVenues";
 
 export default function MyEventsPage() {
   return (
