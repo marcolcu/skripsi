@@ -128,7 +128,7 @@ const postDataHooks = async ({
       status: REQ_STATUS.SUCCESS,
     };
   } catch (error) {
-    console.log("error", error);
+    console.error("error", error);
     throw {
       data: null,
       error: error,

@@ -15,8 +15,6 @@ const OrderDetail = ({ slug }) => {
   } = useVenueBookingDetail();
   const [loading, setLoading] = useState(true);
 
-  console.log(venueBookingDetailError, 'error');
-
   useEffect(() => {
     if (state && state?.token) {
       fetchVenueBookingDetail({
@@ -45,13 +43,10 @@ const OrderDetail = ({ slug }) => {
   };
 
   const padStartTime = (time) => {
-    console.log(time);
     const [hour, minute] = time.split(":").map(Number);
     const paddedMinute = String(minute).padStart(2, "0");
     return `${hour}:${paddedMinute}`;
   };
-
-  console.log(venueBookingDetail);
 
   return (
     <div className="max-w-screen-xl mx-auto px-10">

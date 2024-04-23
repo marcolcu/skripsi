@@ -37,10 +37,7 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
 
   const { reservedDate, hour, minute } = splitDatetime();
 
-  console.log(minute);
-
   const payment = () => {
-    console.log(minute);
     postVenueBooking({
       header: {
         Authorization: "Bearer " + state?.token,
