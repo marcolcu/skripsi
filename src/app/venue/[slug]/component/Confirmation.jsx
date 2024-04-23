@@ -103,7 +103,7 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
         className="w-full bg-cyan-200 mb-5 p-3 rounded-lg"
         onClick={payment}
       >
-        Checkout
+        {venueBookingLoading ? "Loading..." : "Checkout"}
       </button>
     </main>
   );

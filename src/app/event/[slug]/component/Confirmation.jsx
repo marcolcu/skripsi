@@ -122,7 +122,7 @@ const Confirmation = ({ event }) => {
         className="w-full bg-cyan-200 mb-5 p-3 rounded-lg"
         onClick={payment}
       >
-        Checkout
+        {eventRegistrationLoading ? "Loading..." : "Checkout"}
       </button>
     </main>
   );
