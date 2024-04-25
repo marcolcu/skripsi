@@ -72,7 +72,7 @@ const Navbar = () => {
               <>
                 <li>
                   <a
-                    href="/event"
+                    href="/venue"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
                   >
                     <span className="font-semibold">Find a Place</span>
@@ -80,7 +80,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/event"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
                   >
                     <span className="font-semibold">Find an Event</span>

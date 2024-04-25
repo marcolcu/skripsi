@@ -84,6 +84,26 @@ export const useVenueFiltered = () => {
   };
 };
 
+export const useVenueAllFiltered = () => {
+  const { postData, data, loading, status, error, isError } = usePostData();
+
+  return {
+    postVenueAllFiltered: ({ header, option, queryParams, body }) =>
+      postData({
+        urlPath: "api/v1/venues/public/get-all/filtered",
+        header,
+        option,
+        queryParams,
+        body,
+      }),
+    venueAllFiltered: data,
+    venueAllFilteredLoading: loading,
+    venueAllFilteredStatus: status,
+    venueAllFilteredError: error || data?.message,
+    venueAllFilteredIsError: isError || data?.status == "1",
+  };
+};
+
 export const useVenueBooking = () => {
   const { postData, data, loading, status, error, isError } = usePostData();
 

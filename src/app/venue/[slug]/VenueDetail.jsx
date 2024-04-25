@@ -10,7 +10,10 @@ import Confirmation from "./component/Confirmation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetVenueDetail, useVenueFiltered } from "@/services/useVenueServices";
+import {
+  useGetVenueDetail,
+  useVenueFiltered,
+} from "@/services/useVenueServices";
 
 const VenueDetailPage = ({ slug }) => {
   const { state, dispatch } = useAppContext();
@@ -74,6 +77,25 @@ const VenueDetailPage = ({ slug }) => {
       router.push("/login");
     }
   }, [venueDetailError]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const dateParam = urlParams.get("date");
+    const timeParam = urlParams.get("time");
+    const durationParam = urlParams.get("duration");
+
+    if (dateParam && timeParam && durationParam) {
+      setReservedDate(dateParam);
+      setTime(timeParam);
+      setDuration(durationParam);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (reservedDate && time && duration) {
+      filter();
+    }
+  }, [reservedDate, time, duration]);
 
   useEffect(() => {
     fetchTopEvent({
@@ -204,6 +226,7 @@ const VenueDetailPage = ({ slug }) => {
                     </div>
 
                     <button
+                      id="btn-filter"
                       className="flex items-center justify-center bg-cyan-200 rounded-md shadow-sm w-[3rem] h-[2.7rem] focus:outline-none focus:ring-opacity-50"
                       onClick={filter}
                     >

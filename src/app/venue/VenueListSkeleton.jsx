@@ -1,9 +1,27 @@
 "use client";
 import React, { useEffect } from "react";
 
-const EventListSkeleton = () => {
+const VenueListSkeleton = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
+      <div className="my-4 flex justify-center">
+        <div className="flex items-center space-x-2 mt-5">
+          {/* Skeleton for date input */}
+          <div className="border border-gray-300 bg-gray-200 rounded-md shadow-sm w-[200px] py-2 px-3 animate-pulse"></div>
+
+          {/* Skeleton for time input */}
+          <div className="border border-gray-300 bg-gray-200 rounded-md shadow-sm w-[200px] py-2 px-3 animate-pulse"></div>
+
+          {/* Skeleton for duration select */}
+          <div className="border border-gray-300 bg-gray-200 rounded-md shadow-sm w-[103px] py-2 px-3 animate-pulse"></div>
+
+          {/* Skeleton for filter button */}
+          <div className="flex items-center justify-center bg-gray-200 rounded-md shadow-sm w-[48px] h-[2.7rem] animate-pulse">
+            {/* Skeleton for filter button icon */}
+            <svg className="w-6 h-6 text-gray-500"></svg>
+          </div>
+        </div>
+      </div>
 
       {/* Skeleton for venue items */}
       {[...Array(3)].map((_, index) => (
@@ -32,5 +50,4 @@ const EventListSkeleton = () => {
   );
 };
 
-export default EventListSkeleton;
-
+export default VenueListSkeleton;
