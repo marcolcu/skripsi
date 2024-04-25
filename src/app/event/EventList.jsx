@@ -4,6 +4,8 @@ import { useGetEvent } from "@/services/useEventServices";
 import { useAppContext } from "../provider";
 import { useRouter } from "next/navigation";
 import EventListSkeleton from "./EventListSkeleton";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EventList = () => {
   const { fetchEvent, event, eventLoading } = useGetEvent();
@@ -38,6 +40,13 @@ const EventList = () => {
       setEvents(event?.value);
     }
   }, [event]);
+
+  useEffect(() => {
+    if (!state?.token) {
+      router.push("/login");
+      toast.error("Please login first");
+    }
+  }, [state?.token, router]);
 
   const handleLoadMore = () => {
     setVisibleEvents((prevVisibleEvents) => prevVisibleEvents + 3);

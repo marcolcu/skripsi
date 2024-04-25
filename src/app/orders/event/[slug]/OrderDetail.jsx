@@ -8,6 +8,9 @@ import {
 import { useEffect, useState } from "react";
 import Card from "@/app/landing/section/Card";
 import EventDetailSkeleton from "@/app/event/[slug]/EventDetailSkeleton";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const OrderDetail = ({ slug }) => {
   const { state, dispatch } = useAppContext();
@@ -16,6 +19,7 @@ const OrderDetail = ({ slug }) => {
   const { fetchTopEvent, topEventfetch, topEventfetchLoading } =
     useGetTopEvent();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (state && state?.token) {
@@ -43,6 +47,13 @@ const OrderDetail = ({ slug }) => {
       setLoading(false);
     }
   }, [eventRegisDetailLoading, topEventfetchLoading]);
+
+  useEffect(() => {
+    if (!state?.token) {
+      router.push("/login");
+      toast.error("Please login first");
+    }
+  }, [state?.token, router]);
 
   var data = topEventfetch?.value;
 

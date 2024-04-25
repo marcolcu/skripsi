@@ -3,6 +3,9 @@ import { useAppContext } from "@/app/provider";
 import { useGetEventBooking } from "@/services/useEventServices";
 import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const MyEvents = () => {
   const { state, dispatch } = useAppContext();
@@ -11,17 +14,18 @@ const MyEvents = () => {
     useGetEventBooking();
   const data = eventBooking?.value;
   const skeletonRowCount = 5;
+  const router = useRouter();
 
   useEffect(() => {
     if (state && state?.user?.email && state?.token) {
-      fetchEventBooking({
-        header: {
-          Authorization: "Bearer " + state?.token,
-        },
-        queryParams: {
-          userEmail: state?.user?.email,
-        },
-      });
+    fetchEventBooking({
+      header: {
+        Authorization: "Bearer " + state?.token,
+      },
+      queryParams: {
+        userEmail: state?.user?.email,
+      },
+    });
     }
   }, [state]);
 
@@ -30,6 +34,13 @@ const MyEvents = () => {
       setLoading(false);
     }
   }, [eventBookingLoading]);
+
+ useEffect(() => {
+   if (!state?.token) {
+     router.push("/login");
+     toast.error("Please login first");
+   }
+ }, [state?.token, router]);
 
   const columns = [
     {

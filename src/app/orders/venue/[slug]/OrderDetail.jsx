@@ -4,6 +4,9 @@ import { useAppContext } from "@/app/provider";
 import { useEffect, useState } from "react";
 import EventDetailSkeleton from "@/app/event/[slug]/EventDetailSkeleton";
 import { useVenueBookingDetail } from "@/services/useVenueServices";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const OrderDetail = ({ slug }) => {
   const { state, dispatch } = useAppContext();
@@ -14,6 +17,7 @@ const OrderDetail = ({ slug }) => {
     venueBookingDetailError,
   } = useVenueBookingDetail();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (state && state?.token) {
@@ -33,6 +37,13 @@ const OrderDetail = ({ slug }) => {
       setLoading(false);
     }
   }, [venueBookingDetailLoading, venueBookingDetail]);
+
+  useEffect(() => {
+    if (!state?.token) {
+      router.push("/login");
+      toast.error("Please login first");
+    }
+  }, [state?.token, router]);
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);

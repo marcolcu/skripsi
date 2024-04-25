@@ -111,6 +111,13 @@ const VenueDetailPage = ({ slug }) => {
     }
   }, [venueDetailLoading, topEventfetchLoading]);
 
+  useEffect(() => {
+    if (!state?.token) {
+      router.push("/login");
+      toast.error("Please login first");
+    }
+  }, [state?.token, router]);
+
   var data = topEventfetch?.value;
 
   const filter = (e) => {

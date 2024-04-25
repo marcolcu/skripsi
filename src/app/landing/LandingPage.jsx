@@ -17,13 +17,13 @@ const LandingPage = () => {
   var events = event?.value;
   const { state, dispatch } = useAppContext();
   const router = useRouter();
+  var venues = venue?.value;
 
   useEffect(() => {
     if (state?.user?.userRole === "ROLE_ADMIN") {
       router.push("/Admin/home")
     }
   });
-  var venues = venue?.value;
 
   useEffect(() => {
     fetchEvent({

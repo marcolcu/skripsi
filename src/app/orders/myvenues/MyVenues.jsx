@@ -3,6 +3,9 @@ import { useAppContext } from "@/app/provider";
 import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useVenueBookingList } from "@/services/useVenueServices";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyVenues = () => {
   const { state, dispatch } = useAppContext();
@@ -11,6 +14,7 @@ const MyVenues = () => {
     useVenueBookingList();
   const data = venueBookingList?.value;
   const skeletonRowCount = 5;
+  const router = useRouter();
 
   useEffect(() => {
     if (state && state?.user?.email && state?.token) {
@@ -30,6 +34,13 @@ const MyVenues = () => {
       setLoading(false);
     }
   }, [venueBookingListLoading]);
+
+  useEffect(() => {
+    if (!state?.token) {
+      router.push("/login");
+      toast.error("Please login first");
+    }
+  }, [state?.token, router]);
 
   const columns = [
     {
