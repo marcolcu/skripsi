@@ -84,13 +84,6 @@ const EventDetailPage = ({ slug }) => {
     }
   }, [eventDetailLoading, topEventfetchLoading]);
 
-  useEffect(() => {
-    if (!state?.token) {
-      router.push("/login");
-      toast.error("Please login first");
-    }
-  }, [state?.token, router]);
-
   var data = topEventfetch?.value;
 
   const buyClick = () => {

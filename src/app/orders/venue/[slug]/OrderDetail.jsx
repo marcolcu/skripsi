@@ -38,13 +38,6 @@ const OrderDetail = ({ slug }) => {
     }
   }, [venueBookingDetailLoading, venueBookingDetail]);
 
-  useEffect(() => {
-    if (!state?.token) {
-      router.push("/login");
-      toast.error("Please login first");
-    }
-  }, [state?.token, router]);
-
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     const day = date.getDate().toString().padStart(2, "0");

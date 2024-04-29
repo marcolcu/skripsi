@@ -35,13 +35,6 @@ const MyEvents = () => {
     }
   }, [eventBookingLoading]);
 
- useEffect(() => {
-   if (!state?.token) {
-     router.push("/login");
-     toast.error("Please login first");
-   }
- }, [state?.token, router]);
-
   const columns = [
     {
       name: "id",

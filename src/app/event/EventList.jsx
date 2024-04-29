@@ -41,13 +41,6 @@ const EventList = () => {
     }
   }, [event]);
 
-  useEffect(() => {
-    if (!state?.token) {
-      router.push("/login");
-      toast.error("Please login first");
-    }
-  }, [state?.token, router]);
-
   const handleLoadMore = () => {
     setVisibleEvents((prevVisibleEvents) => prevVisibleEvents + 3);
   };

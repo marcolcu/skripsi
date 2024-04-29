@@ -67,13 +67,6 @@ const VenueList = () => {
     }
   }, [venueAllFiltered]);
 
-  useEffect(() => {
-    if (!state?.token) {
-      router.push("/login");
-      toast.error("Please login first");
-    }
-  }, [state?.token, router]);
-
   const handleLoadMore = () => {
     setVisibleVenues((prevVisibleVenues) => prevVisibleVenues + 3);
   };
