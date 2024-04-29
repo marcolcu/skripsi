@@ -99,7 +99,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <a
-                    href="/features"
+                    href="/feature"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
                   >
                     <span className="font-semibold">Features</span>

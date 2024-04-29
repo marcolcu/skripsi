@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const AboutUs = () => {
-  const [toggleState, setToggleState] = useState(0);
 
   return (
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
