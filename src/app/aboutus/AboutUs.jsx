@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./aboutus.css";
 
 const AboutUs = () => {
   const [toggleState, setToggleState] = useState(0);
