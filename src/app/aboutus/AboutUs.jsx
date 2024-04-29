@@ -9,13 +9,11 @@ const AboutUs = () => {
       <div className="flex items-center justify-between h-screen">
         <img src="/assets/chat-information.png" alt="" />
         <div className="w-[500px] text-justify">
-          Kami adalah wadah yang menghubungkan Anda dengan berbagai acara
-          menarik di sekitar Anda. Dari konser hingga workshop, kami menyediakan
-          akses mudah dan pengalaman yang tak terlupakan. Dengan fitur pemesanan
-          yang intuitif, Anda dapat dengan cepat dan mudah merencanakan setiap
-          detail acara. Bergabunglah dengan komunitas kami yang dinamis dan
-          jadilah bagian dari perjalanan kami untuk menciptakan momen-momen
-          berharga yang tak terlupakan.
+          We are a platform connecting you to various exciting events around
+          you. From concerts to workshops, we provide easy access and
+          unforgettable experiences. With intuitive booking features, plan every
+          event detail quickly and effortlessly. Join our dynamic community and
+          be part of our journey to create unforgettable moments.
         </div>
       </div>
 
