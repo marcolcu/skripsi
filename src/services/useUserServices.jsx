@@ -1,3 +1,4 @@
+import { useGetData } from "@/hooks/useGetData";
 import usePostData from "@/hooks/usePostData";
 
 export const useLogin = () => {
@@ -39,5 +40,48 @@ export const useRegister = () => {
     registerStatus: status,
     registerError: error,
     registerIsError: isError,
+  };
+};
+
+export const useEditUser = () => {
+  const { postData, data, loading, message, status, error, isError } = usePostData();
+
+  return {
+    postEditUser: ({ header, option, queryParams, body }) =>
+      postData({
+        urlPath: "api/v1/users/public/edit-profile",
+        header,
+        option,
+        queryParams,
+        body,
+      }),
+    editUser: data,
+    editUserLoading: loading,
+    editUserMessage: message,
+    editUserStatus: status,
+    editUserError: error,
+    editUserIsError: isError,
+  };
+};
+
+export const useGetUser = () => {
+  const { fetchData, data, message, loading, status, error, isError } =
+    useGetData();
+
+  return {
+    fetchGetUser: ({ header, option, queryParams, body }) =>
+      fetchData({
+        urlPath: "api/v1/users/public/find",
+        header,
+        option,
+        queryParams,
+        body,
+      }),
+    user: data,
+    userLoading: loading,
+    userMessage: message,
+    userStatus: status,
+    userError: error,
+    userIsError: isError,
   };
 };

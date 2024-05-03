@@ -29,7 +29,7 @@ const AboutUs = () => {
               className="w-32 h-32 object-cover rounded-full"
             />
             <p className="text-center mt-5 font-bold">Oliver Oswin Sumady</p>
-            <p className="text-center mt-2 italic">Backend Programmer</p>
+            <p className="text-center mt-2 italic">Backend Developer</p>
           </div>
           <div className="w-1/3 flex flex-col items-center mr-4">
             <img
@@ -38,7 +38,7 @@ const AboutUs = () => {
               className="w-32 h-32 object-cover rounded-full"
             />
             <p className="text-center mt-5 font-bold">Brian Joe Antoni</p>
-            <p className="text-center mt-2 italic">Frontend Programmer</p>
+            <p className="text-center mt-2 italic">Frontend Developer</p>
           </div>
           <div className="w-1/3 flex flex-col items-center">
             <img
@@ -47,7 +47,7 @@ const AboutUs = () => {
               className="w-32 h-32 object-cover rounded-full"
             />
             <p className="text-center mt-5 font-bold">Vincentius Marco Melandri</p>
-            <p className="text-center mt-2 italic">Frontend Programmer</p>
+            <p className="text-center mt-2 italic">Frontend Developer</p>
           </div>
         </div>
       </div>
