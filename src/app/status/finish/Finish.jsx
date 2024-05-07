@@ -736,7 +736,9 @@ const Finish = () => {
 
   useEffect(() => {
     if (eventConfirmation?.success) {
-      router.push("/orders/event/" + eventConfirmation?.value?.id);
+      router.push(
+        "/orders/event/" + eventConfirmation?.value?.registrationCode
+      );
     }
   }, [eventConfirmation]);
 

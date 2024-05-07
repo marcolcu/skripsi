@@ -251,7 +251,7 @@ const Profile = () => {
             </table>
             <div className="flex justify-end">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                className="bg-cyan-200 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded-full mt-4"
                 onClick={handleSubmit}
               >
                 Submit
