@@ -99,6 +99,17 @@ const EventDetailPage = ({ slug }) => {
     return `${day}-${month}-${year}`;
   };
 
+  const formatStartTime = (timestamp) => {
+    const startTime = new Date(timestamp);
+
+    const hours = startTime.getHours().toString().padStart(2, "0");
+    const minutes = startTime.getMinutes().toString().padStart(2, "0");
+
+    const startTimeString = `${hours}:${minutes}`;
+
+    return startTimeString;
+  }
+
   return (
     <div className="max-w-screen-xl mx-auto px-10">
       {loading ? (
@@ -134,6 +145,7 @@ const EventDetailPage = ({ slug }) => {
                   <div>
                     <FontAwesomeIcon icon={faCalendar} />
                     &nbsp; {formatDate(eventDetail?.value?.dateHeld)}
+                    &nbsp;T&nbsp;{formatStartTime(eventDetail?.value?.dateHeld)}
                   </div>
                 </div>
                 {/* Right Side */}
