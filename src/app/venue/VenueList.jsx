@@ -73,8 +73,28 @@ const VenueList = () => {
 
   const handleRouting = (date, time, duration, id) => {
     if (date && time && duration) {
-      router.push("/venue/" + id + "?date=" + date + "&time=" + time + "&duration=" + duration);
+      router.prefetch(
+        "/venue/" +
+          id +
+          "?date=" +
+          date +
+          "&time=" +
+          time +
+          "&duration=" +
+          duration
+      );
+      router.push(
+        "/venue/" +
+          id +
+          "?date=" +
+          date +
+          "&time=" +
+          time +
+          "&duration=" +
+          duration
+      );
     } else {
+      router.prefetch("/venue/" + id);
       router.push("/venue/" + id);
     }
   };
@@ -94,7 +114,7 @@ const VenueList = () => {
         },
       });
     } else {
-      toast.error("Please enter all the filter")
+      toast.error("Please enter all the filter");
     }
   };
 
@@ -163,7 +183,13 @@ const VenueList = () => {
           </div>
 
           {venues.slice(0, visibleVenues).map((venue, index) => (
-            <a href="#" key={index} onClick={() => handleRouting(reservedDate, time, duration, venue?.id)}>
+            <a
+              href="#"
+              key={index}
+              onClick={() =>
+                handleRouting(reservedDate, time, duration, venue?.id)
+              }
+            >
               <div className="relative mb-5">
                 <img
                   src={

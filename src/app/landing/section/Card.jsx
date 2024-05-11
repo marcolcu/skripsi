@@ -20,6 +20,7 @@ const Card = ({ events }) => {
         router.push("/login");
         toast.error("Please login first");
       } else {
+        router.prefetch(`/event/${eventId}`);
         router.push(`/event/${eventId}`);
       }
       setClicked(true);

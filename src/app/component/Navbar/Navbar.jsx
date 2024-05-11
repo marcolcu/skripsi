@@ -1,5 +1,6 @@
 "use client";
 import { useAppContext } from "@/app/provider";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -61,59 +62,65 @@ const Navbar = () => {
         <nav className="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
           <ul className="flex flex-col lg:flex-row lg:gap-3">
             <li>
-              <a
+              <Link
                 href="/"
                 className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                prefetch
               >
                 <span className="font-semibold"> Home</span>
-              </a>
+              </Link>
             </li>
             {state?.token ? (
               <>
                 <li>
-                  <a
+                  <Link
                     href="/venue"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
                   >
                     <span className="font-semibold">Find a Place</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/event"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
                   >
                     <span className="font-semibold">Find an Event</span>
-                  </a>
+                  </Link>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <a
+                  <Link
                     href="/aboutus"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
                   >
                     <span className="font-semibold">About Us</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/feature"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
                   >
                     <span className="font-semibold">Features</span>
-                  </a>
+                  </Link>
                 </li>
               </>
             )}
             <li>
-              <a
+              <Link
                 href="/support"
                 className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                prefetch
               >
                 <span className="font-semibold">Support</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -152,31 +159,34 @@ const Navbar = () => {
                     aria-labelledby="options-menu"
                   >
                     <li>
-                      <a
+                      <Link
                         href="/profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        prefetch
                         onClick={closeDropdown}
                       >
                         Profile
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/orders/myevents"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        prefetch
                         onClick={closeDropdown}
                       >
                         My Events
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/orders/myvenues"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        prefetch
                         onClick={closeDropdown}
                       >
                         My Venue Bookings
-                      </a>
+                      </Link>
                     </li>
                     <hr />
                     <li>
@@ -195,18 +205,20 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="hidden lg:flex items-center gap-4">
-            <a
+            <Link
               href="/login?register"
               className="rounded-full text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black font-semibold hover:bg-gray-800 text-white border-2 border-transparent hover:underline hover:underline-offset-2 decoration-2"
+              prefetch
             >
               Sign up
-            </a>
-            <a
+            </Link>
+            <Link
               href="/login"
               className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
+              prefetch
             >
               Log in
-            </a>
+            </Link>
           </div>
         )}
       </header>

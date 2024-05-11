@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import EventListSkeleton from "./EventListSkeleton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 const EventList = () => {
   const { fetchEvent, event, eventLoading } = useGetEvent();
@@ -52,7 +53,7 @@ const EventList = () => {
       ) : (
         <>
           {events.slice(0, visibleEvents).map((event, index) => (
-            <a href={`/event/${event?.id}`} key={index}>
+            <Link href={`/event/${event?.id}`} key={index} prefetch>
               <div className="relative mb-5">
                 <img
                   src={
@@ -75,7 +76,7 @@ const EventList = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
           {visibleEvents < events.length && (
             <div className="w-full flex justify-center">

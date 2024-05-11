@@ -30,6 +30,9 @@ const Confirmation = ({ event }) => {
       dispatch({
         registrationCode: eventRegistration?.value?.registrationCode,
       });
+      router.prefetch(
+        "/orders/event/" + eventRegistration?.value?.registrationCode
+      );
       router.push(
         "/orders/event/" + eventRegistration?.value?.registrationCode
       );
@@ -42,10 +45,14 @@ const Confirmation = ({ event }) => {
         registrationCode: eventRegistration?.value?.registrationCode,
       });
       if (eventRegistration?.value?.event?.free === true) {
+        router.prefetch(
+          "/orders/event/" + eventRegistration?.value?.registrationCode
+        );
         router.push(
           "/orders/event/" + eventRegistration?.value?.registrationCode
         );
       } else {
+        router.prefetch(eventPayment?.value?.redirectUrl);
         router.push(eventPayment?.value?.redirectUrl);
       }
     } else {

@@ -736,6 +736,9 @@ const Finish = () => {
 
   useEffect(() => {
     if (eventConfirmation?.success) {
+      router.prefetch(
+        "/orders/event/" + eventConfirmation?.value?.registrationCode
+      );
       router.push(
         "/orders/event/" + eventConfirmation?.value?.registrationCode
       );

@@ -1,6 +1,6 @@
 import { useAppContext } from "@/app/provider";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Slider from "react-slick";
@@ -12,17 +12,20 @@ const CardVenue = ({ events }) => {
   const router = useRouter();
   const { state } = useAppContext();
   const sliderRef = useRef(null);
+  const [toastShown, setToastShown] = useState(false);
 
   const checkLogin = useCallback(
     (eventId) => {
-      if (state?.token === null) {
+      if (state?.token === null && !toastShown) {
+        setToastShown(true);
         router.push("/login");
         toast.error("Please login first");
       } else {
+        router.prefetch(`/venue/${eventId}`);
         router.push(`/venue/${eventId}`);
       }
     },
-    [state?.token, router]
+    [state?.token, router, toastShown]
   );
 
   const settings = {

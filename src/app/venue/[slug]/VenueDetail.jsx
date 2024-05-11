@@ -74,6 +74,7 @@ const VenueDetailPage = ({ slug }) => {
         token: null,
         user: null,
       });
+      router.prefetch("/login");
       router.push("/login");
     }
   }, [venueDetailError]);

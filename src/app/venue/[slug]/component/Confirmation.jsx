@@ -15,11 +15,12 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
 
   useEffect(() => {
     if (venueBooking?.success) {
+      router.prefetch("/orders/venue/" + venueBooking?.value?.reservationCode);
       router.push("/orders/venue/" + venueBooking?.value?.reservationCode);
     } else {
       toast.error(venueBooking?.errorMessage);
     }
-  }, [venueBooking]);
+  }, [venueBooking, router]);
 
   const splitDatetime = () => {
     const [date, time] = datetime.split(" ");

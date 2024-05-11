@@ -2,7 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTicket } from "@fortawesome/free-solid-svg-icons";
-import CardVenue from "./CardVenue";
+import dynamic from "next/dynamic";
+// import CardVenue from "./CardVenue";
+
+const CardVenue = dynamic(() => import("./CardVenue"), {
+  loading: () => <p>Loading...</p>,
+});
 
 const VenueBooking = (event) => {
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -22,7 +27,7 @@ const VenueBooking = (event) => {
             {dataLoaded && <FontAwesomeIcon icon={faTicket} />}
             &nbsp;Venue Booking
           </h2>
-          <a href="#">Let's go &rarr;</a>
+          <a href="#">Let&apos;s go &rarr;</a>
         </div>
         {dataLoaded ? (
           data ? (

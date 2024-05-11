@@ -66,6 +66,7 @@ const EventDetailPage = ({ slug }) => {
         token: null,
         user: null,
       });
+      router.prefetch("/login");
       router.push("/login");
     }
   }, [eventDetailError]);

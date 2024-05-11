@@ -8,7 +8,12 @@ import { useAppContext } from "../provider";
 import { useRouter } from "next/navigation";
 import UpcomingEvent from "./section/UpcomingEvent";
 import { useGetVenue } from "@/services/useVenueServices";
-import VenueBooking from "./section/VenueBooking";
+import dynamic from 'next/dynamic';
+
+// Dynamic import for VenueBooking
+const VenueBooking = dynamic(() => import("./section/VenueBooking"), {
+  loading: () => <p>Loading...</p>
+});
 
 const LandingPage = () => {
   const { fetchEvent, event, eventLoading } = useGetEvent();
