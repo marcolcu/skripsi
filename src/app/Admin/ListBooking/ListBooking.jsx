@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./AdminCSS/Admin.css";
-import RegistrationEventTableRow from "./section/RegistrationEventTableRow";
+import "../AdminCSS/Admin.css";
+import BookingVenueTableRow from "../section/BookingVenueTableRow";
 
-const ListRegistration = () => {
+const ListBooking = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ListRegistration = () => {
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "1000px" }}>
       <>
         <div>
-          <p className="text-3xl mb-5">List Of Registrations</p>
+          <p className="text-3xl mb-5">List Of Bookings</p>
         </div>
         <section className="">
           <div className="flex flex-col">
@@ -43,7 +43,7 @@ const ListRegistration = () => {
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          RegistrationID
+                          BookingID
                         </th>
 
                         <th
@@ -59,7 +59,7 @@ const ListRegistration = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      <RegistrationEventTableRow />
+                      <BookingVenueTableRow />
                     </tbody>
                   </table>
                 </div>
@@ -74,4 +74,4 @@ const ListRegistration = () => {
   );
 };
 
-export default ListRegistration;
+export default ListBooking;

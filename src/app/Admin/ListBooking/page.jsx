@@ -1,9 +1,9 @@
-import AdminHome from "./AdminHome";
+import ListBooking from "./ListBooking";
 
 export default function HomePage() {
   return (
     <>
-      <AdminHome />
+      <ListBooking />
     </>
   );
 }

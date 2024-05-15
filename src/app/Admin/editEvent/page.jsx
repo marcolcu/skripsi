@@ -1,9 +1,9 @@
-import AdminHome from "./AdminHome";
+import AdminEditEvent from "./EditEvent";
 
 export default function HomePage() {
   return (
     <>
-      <AdminHome />
+      <AdminEditEvent />
     </>
   );
 }

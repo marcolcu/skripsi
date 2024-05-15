@@ -22,7 +22,7 @@ const UpcomingEvent = (event) => {
             {dataLoaded && <FontAwesomeIcon icon={faTicket} />}
             &nbsp;Upcoming Events
           </h2>
-          <a href="#">Let's go &rarr;</a>
+          <a href="#">Let&apos;s go &rarr;</a>
         </div>
         {dataLoaded ? (
           data ? (

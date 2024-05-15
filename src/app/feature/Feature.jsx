@@ -14,7 +14,7 @@ const Feature = () => {
           events and special offers. Enjoy hassle-free ticket purchases, secure
           transactions, and flexible payment options. Dive into a world of
           diverse events, from live performances to exclusive workshops, curated
-          just for you. Whether you're a seasoned event-goer or new to the
+          just for you. Whether you&apos;re a seasoned event-goer or new to the
           scene, our platform offers something for everyone. Join us and unlock
           a world of possibilities to elevate your event journey.
         </div>

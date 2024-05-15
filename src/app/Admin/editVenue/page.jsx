@@ -1,9 +1,9 @@
-import AdminHome from "./AdminHome";
+import AdminEditVenue from "./EditVenue";
 
 export default function HomePage() {
   return (
     <>
-      <AdminHome />
+      <AdminEditVenue />
     </>
   );
 }

@@ -1,11 +1,16 @@
 import "../AdminCSS/Admin.css";
-import { useCancelBooking } from "@/services/useAdminVenueServices";
+import { useCancelRegistration } from "@/services/useAdminEventServices";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "@/app/provider";
 
-const ModalBookingCancel = ({ open, onClose, booking, onSuccessCancel }) => {
+const ModalRegistrationCancel = ({
+  open,
+  onClose,
+  registration,
+  onSuccessCancel,
+}) => {
   const { state } = useAppContext();
-  const { postCancelBooking } = useCancelBooking();
+  const { postCancelRegistration } = useCancelRegistration();
   const [reason, setReason] = useState("");
   const [isReasonEmpty, setIsReasonEmpty] = useState(true);
 
@@ -14,21 +19,22 @@ const ModalBookingCancel = ({ open, onClose, booking, onSuccessCancel }) => {
     setIsReasonEmpty(value.trim().length === 0);
   };
 
-  const handleCancelBooking = async () => {
+  const handleCancelRegistration = async () => {
     try {
-      await postCancelBooking({
+      await postCancelRegistration({
         header: {
           Authorization: "Bearer " + state?.token,
         },
         body: {
-          reservationCode: booking.reservationCode,
-          reason: reason,
+          userEmail: registration.user.email,
+          eventId: registration.event.id,
+          cancellationReason: reason,
         },
       });
       onSuccessCancel();
       onClose();
     } catch (error) {
-      console.error("Error cancelling booking:", error);
+      console.error("Error cancelling registration:", error);
       onFailCancel();
     }
   };
@@ -62,14 +68,14 @@ const ModalBookingCancel = ({ open, onClose, booking, onSuccessCancel }) => {
           <div className="flex justify-center mt-12">
             <button
               onClick={() => {
-                handleCancelBooking();
+                handleCancelRegistration();
               }}
               disabled={isReasonEmpty}
               className={`${
                 isReasonEmpty ? "cursor-not-allowed bg-gray-400" : "bg-red-500"
               } text-white px-12 py-4 rounded-full text-xl`}
             >
-              Cancel Booking
+              Cancel Registration
             </button>
           </div>
         </div>
@@ -78,4 +84,4 @@ const ModalBookingCancel = ({ open, onClose, booking, onSuccessCancel }) => {
   );
 };
 
-export default ModalBookingCancel;
+export default ModalRegistrationCancel;

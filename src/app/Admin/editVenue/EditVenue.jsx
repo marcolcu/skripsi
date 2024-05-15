@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./AdminCSS/Admin.css";
+import "../AdminCSS/Admin.css";
 
-const AdminEditEvent = () => {
+const AdminEditVenue = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const AdminEditEvent = () => {
   );
 };
 
-export default AdminEditEvent;
+export default AdminEditVenue;

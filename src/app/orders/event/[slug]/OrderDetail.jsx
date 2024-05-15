@@ -134,11 +134,11 @@ const OrderDetail = ({ slug }) => {
                       {eventRegisDetail?.value?.status}
                     </td>
                   </tr>
-                  {eventRegisDetail?.value?.cancellationReason !== null ?? (
+                  {eventRegisDetail?.value?.cancellationReason !== null && (
                     <tr>
                       <td>Cancellation Reason</td>
                       <td className="ps-5 font-bold capitalize">
-                        eventRegisDetail?.value?.cancellationReason
+                        {eventRegisDetail?.value?.cancellationReason}
                       </td>
                     </tr>
                   )}

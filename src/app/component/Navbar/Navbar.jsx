@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateVenue from "../../Admin/createVenue/AdminCreateVenue";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-[100]">
+    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40">
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
           scrolled ? "backdrop-blur-2xl bg-white/30 " : "bg-cyan-50"
@@ -54,24 +55,25 @@ const Navbar = () => {
         <div className="flex w-full lg:w-auto items-center justify-between">
           <a href="/" className="text-lg">
             <span className={`font-bold  ${scrolled ? "" : ""}`}>
-              Event App
+              Venn.io
             </span>
           </a>
         </div>
 
         <nav className="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
           <ul className="flex flex-col lg:flex-row lg:gap-3">
-            <li>
-              <Link
-                href="/"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                prefetch
-              >
-                <span className="font-semibold"> Home</span>
-              </Link>
-            </li>
-            {state?.token ? (
+            {state?.token && state?.user?.userRole != "ROLE_ADMIN" && (
+              // User is logged in as a normal user
               <>
+                <li>
+                  <Link
+                    href="/"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold"> Home</span>
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/venue"
@@ -91,8 +93,57 @@ const Navbar = () => {
                   </Link>
                 </li>
               </>
-            ) : (
+            )}
+
+            {state?.token && state?.user?.userRole == "ROLE_ADMIN" && (
+              // User is logged in as an admin
               <>
+                <li>
+                  <a
+                    href="/Admin/createVenue"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Create Venue</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/createEvent"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Create Event</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/ListOfVenue"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">List of Venues</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/ListOfEvent"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">List of Events</span>
+                  </a>
+                </li>
+              </>
+            )}
+
+            {state?.token === null && (
+              <>
+                <li>
+                  <Link
+                    href="/"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold"> Home</span>
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/aboutus"
@@ -113,15 +164,6 @@ const Navbar = () => {
                 </li>
               </>
             )}
-            <li>
-              <Link
-                href="/support"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                prefetch
-              >
-                <span className="font-semibold">Support</span>
-              </Link>
-            </li>
           </ul>
         </nav>
 
