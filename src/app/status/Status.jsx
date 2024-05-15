@@ -1,17 +1,24 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../provider";
 import { useEventConfirmation } from "@/services/useEventServices";
 
 const Status = () => {
+  const [statusCode, setStatusCode] = useState(null);
   // Mendapatkan parameter status_code dari URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const statusCode = urlParams.get("status_code");
   const router = useRouter();
   const { state, dispatch } = useAppContext();
   const { postEventConfirmation, eventConfirmation, eventConfirmationLoading } =
     useEventConfirmation();
+
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const urlParams = new URLSearchParams(window.location.search);
+        const statusCode = urlParams.get("status_code");
+        setStatusCode(statusCode);
+      }
+    }, []);
 
   useEffect(() => {
     if (state?.registrationCode) {
