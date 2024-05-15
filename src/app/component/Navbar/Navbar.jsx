@@ -55,7 +55,7 @@ const Navbar = () => {
         <div className="flex w-full lg:w-auto items-center justify-between">
           <a href="/" className="text-lg">
             <span className={`font-bold  ${scrolled ? "" : ""}`}>
-              Event App
+              Venn.io
             </span>
           </a>
         </div>

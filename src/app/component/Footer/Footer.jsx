@@ -8,14 +8,14 @@ const Footer = () => {
               <div className="mb-6 md:mb-0">
                 <a href="/" className="flex items-center">
                   <span className="self-center text-2xl font-semibold whitespace-nowrap">
-                    Event app
+                    Venn.io
                   </span>
                 </a>
               </div>
               <div className="text-righ">
-                <h1 className="text-2xl">PT. ABC IJK XYZ</h1>
-                <p>(021) 123456789</p>
-                <p>event.app@eventapp.com</p>
+                <h1 className="text-2xl">PT. VENN.IO</h1>
+                <p>(021) 14045</p>
+                <p>cs@venn.io</p>
               </div>
             </div>
             <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
