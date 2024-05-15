@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "./AdminCSS/Admin.css";
+import "../AdminCSS/Admin.css";
 
 const AdminCreateEvent = () => {
   const [loading, setLoading] = useState(true);

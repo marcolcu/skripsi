@@ -2,28 +2,54 @@
 import React, { useEffect } from "react";
 import "../AdminCSS/Admin.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faHouse, faPerson } from "@fortawesome/free-solid-svg-icons";
+import { useGetEventAdmin } from "@/services/useAdminEventServices";
 
 const EventCard = () => {
-  const cardArray = Array.from({ length: 4 }, (_, index) => index);
+  const { fetchEventAdmin, eventAdmin } = useGetEventAdmin();
+  useEffect(() => {
+    fetchEventAdmin({
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, []);
+
+  const hasEventWithParticipants =
+    eventAdmin &&
+    eventAdmin.value &&
+    eventAdmin.value.some((event) => event.totalParticipant >= 1);
 
   return (
     <main>
-      {cardArray.map((index) => (
-        <div key={index}>
-          <div className="mb-3 p-4 base-color rounded-2xl flex flex-col gap-2">
-            <p className="text-2xl">First Event Name</p>
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faClock} />
-              26 feb 2024, 20:20
-            </div>
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faHouse} />
-              Main Hall, Gedung PT XYZ
-            </div>
-          </div>
+      {eventAdmin && eventAdmin.value && eventAdmin.value.length > 0 ? (
+        eventAdmin.value.map(
+          (event) =>
+            event.totalParticipant >= 1 && (
+              <div key={event.id}>
+                <div className="mb-3 p-4 base-color rounded-2xl flex flex-col gap-2">
+                  <p className="text-2xl">{event.name}</p>
+                  <div className="flex items-center gap-2">
+                    <FontAwesomeIcon icon={faClock} />
+                    {new Date(event.dateHeld).toLocaleString()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FontAwesomeIcon icon={faHouse} />
+                    {event.location}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FontAwesomeIcon icon={faPerson} className="w-4" />
+                    {event.totalParticipant} Person
+                  </div>
+                </div>
+              </div>
+            )
+        )
+      ) : hasEventWithParticipants ? null : (
+        <div className="mb-3 p-4 base-color rounded-2xl flex flex-col gap-2">
+          <p className="text-2xl">No Registrations</p>
         </div>
-      ))}
+      )}
     </main>
   );
 };

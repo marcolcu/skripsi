@@ -22,7 +22,7 @@ const CurrentFav = (event) => {
             {dataLoaded && <FontAwesomeIcon icon={faStar} />}
             &nbsp;Current Fav
           </h2>
-          <a href="#">Let's go &rarr;</a>
+          <a href="#">Let&apos;s go &rarr;</a>
         </div>
         {dataLoaded ? (
           data ? (

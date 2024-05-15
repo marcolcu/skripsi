@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateVenue from "../../Admin/createVenue/AdminCreateVenue";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -110,6 +111,90 @@ const Navbar = () => {
                   >
                     <span className="font-semibold">Features</span>
                   </Link>
+                </li>
+                <li>
+                  <a
+                    href="/support"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Support</span>
+                  </a>
+                </li>
+              </>
+            )}
+
+            {state?.token && state?.user?.userRole != "ROLE_ADMIN" && (
+              // User is logged in as a normal user
+              <>
+                <li>
+                  <a
+                    href="/"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold"> Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Find a Place</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Find an Event</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/support"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Support</span>
+                  </a>
+                </li>
+              </>
+            )}
+
+            {state?.token && state?.user?.userRole == "ROLE_ADMIN" && (
+              // User is logged in as an admin
+              <>
+                <li>
+                  <a
+                    href="/Admin/createVenue"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Create Venue</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/createEvent"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">Create Event</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/ListOfVenue"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">List of Venues</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Admin/ListOfEvent"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                  >
+                    <span className="font-semibold">List of Events</span>
+                  </a>
                 </li>
               </>
             )}
