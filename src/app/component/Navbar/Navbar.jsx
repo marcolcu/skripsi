@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-[100]">
+    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40">
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
           scrolled ? "backdrop-blur-2xl bg-white/30 " : "bg-cyan-50"
@@ -62,17 +62,18 @@ const Navbar = () => {
 
         <nav className="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
           <ul className="flex flex-col lg:flex-row lg:gap-3">
-            <li>
-              <Link
-                href="/"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                prefetch
-              >
-                <span className="font-semibold"> Home</span>
-              </Link>
-            </li>
-            {state?.token ? (
+            {state?.token && state?.user?.userRole != "ROLE_ADMIN" && (
+              // User is logged in as a normal user
               <>
+                <li>
+                  <Link
+                    href="/"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold"> Home</span>
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/venue"
@@ -90,73 +91,6 @@ const Navbar = () => {
                   >
                     <span className="font-semibold">Find an Event</span>
                   </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link
-                    href="/aboutus"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                    prefetch
-                  >
-                    <span className="font-semibold">About Us</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/feature"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                    prefetch
-                  >
-                    <span className="font-semibold">Features</span>
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="/support"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">Support</span>
-                  </a>
-                </li>
-              </>
-            )}
-
-            {state?.token && state?.user?.userRole != "ROLE_ADMIN" && (
-              // User is logged in as a normal user
-              <>
-                <li>
-                  <a
-                    href="/"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold"> Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">Find a Place</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">Find an Event</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/support"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">Support</span>
-                  </a>
                 </li>
               </>
             )}
@@ -198,15 +132,38 @@ const Navbar = () => {
                 </li>
               </>
             )}
-            <li>
-              <Link
-                href="/support"
-                className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                prefetch
-              >
-                <span className="font-semibold">Support</span>
-              </Link>
-            </li>
+
+            {state?.token === null && (
+              <>
+                <li>
+                  <Link
+                    href="/"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold"> Home</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/aboutus"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold">About Us</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/feature"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold">Features</span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
 

@@ -205,7 +205,7 @@ const ListOfVenue = () => {
           <Collapse in={openAlert}>
             <Alert
               severity="success"
-              className="flex items-center text-lg py-4"
+              className="flex items-center text-lg py-4 z-50"
               action={
                 <IconButton
                   onClick={() => {

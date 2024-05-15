@@ -8,9 +8,7 @@ export default function Home() {
   return (
     <>
       {/* <LoginRegister /> */}
-      {/* <LandingPage /> */}
-
-      <AdminHome />
+      <LandingPage />
     </>
   );
 }

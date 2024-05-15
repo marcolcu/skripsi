@@ -77,7 +77,7 @@ const RegistrationList = ({ slug }) => {
       },
     },
     {
-      name: "id",
+      name: "registrationCode",
       label: "RegistrationID",
       title: "RegistrationID",
     },
@@ -133,6 +133,8 @@ const RegistrationList = ({ slug }) => {
       label: " ",
       title: " ",
       options: {
+        sort: false,
+        filter: false,
         customBodyRender: (value, tableMeta) => {
           if (value !== "cancelled" && value !== "pending") {
             return (
@@ -176,7 +178,7 @@ const RegistrationList = ({ slug }) => {
         <Collapse in={openAlert}>
           <Alert
             severity="success"
-            className="flex items-center text-lg py-4"
+            className="flex items-center text-lg py-4 z-50"
             action={
               <IconButton
                 onClick={() => {

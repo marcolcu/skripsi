@@ -78,9 +78,9 @@ const BookingList = ({ slug }) => {
       },
     },
     {
-      name: "id",
-      label: "RegistrationID",
-      title: "RegistrationID",
+      name: "reservationCode",
+      label: "BookingID",
+      title: "BookingID",
     },
     {
       name: "fullname",
@@ -134,6 +134,8 @@ const BookingList = ({ slug }) => {
       label: " ",
       title: " ",
       options: {
+        sort: false,
+        filter: false,
         customBodyRender: (value, tableMeta) => {
           if (value !== "cancelled" && value !== "pending") {
             return (
@@ -175,7 +177,7 @@ const BookingList = ({ slug }) => {
         <Collapse in={openAlert}>
           <Alert
             severity="success"
-            className="flex items-center text-lg py-4"
+            className="flex items-center text-lg py-4 z-50"
             action={
               <IconButton
                 onClick={() => {
