@@ -11,7 +11,7 @@ import { Box, Alert, IconButton, Collapse } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const ListOfEvent = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [loading, setLoading] = useState(true);
   const { fetchEventAdmin, eventAdmin } = useGetEventAdmin();
   var data = eventAdmin?.value;
@@ -20,14 +20,7 @@ const ListOfEvent = () => {
   const [eventIdToDisable, setEventIdToDisable] = useState();
   const [openAlert, setOpenAlert] = useState(false);
 
-  const {
-    postDisableEvent,
-    disableEvent,
-    disableEventLoading,
-    disableEventStatus,
-    disableEventError,
-    disableEventIsError,
-  } = useDisableEvent();
+  const { postDisableEvent } = useDisableEvent();
 
   useEffect(() => {
     const timer = setTimeout(() => {
