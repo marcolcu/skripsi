@@ -175,7 +175,7 @@ const EventDetailPage = ({ slug }) => {
                     className="bg-cyan-200 rounded-2xl text-center w-[150px] h-[50px]"
                     onClick={buyClick}
                   >
-                    Buy
+                    Register
                   </button>
                 </div>
               </div>
