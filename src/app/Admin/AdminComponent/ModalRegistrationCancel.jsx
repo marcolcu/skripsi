@@ -42,7 +42,7 @@ const ModalRegistrationCancel = ({
   if (!open) return null;
 
   return (
-    <div className="overlay flex justify-center items-center">
+    <div className="overlay flex justify-center items-center z-50">
       <div className="modalContainer relative py-12">
         <button onClick={onClose} className="closeBtn absolute">
           <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
