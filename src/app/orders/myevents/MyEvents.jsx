@@ -18,14 +18,14 @@ const MyEvents = () => {
 
   useEffect(() => {
     if (state && state?.user?.email && state?.token) {
-    fetchEventBooking({
-      header: {
-        Authorization: "Bearer " + state?.token,
-      },
-      queryParams: {
-        userEmail: state?.user?.email,
-      },
-    });
+      fetchEventBooking({
+        header: {
+          Authorization: "Bearer " + state?.token,
+        },
+        queryParams: {
+          userEmail: state?.user?.email,
+        },
+      });
     }
   }, [state]);
 
@@ -44,6 +44,7 @@ const MyEvents = () => {
         customBodyRender: (value, tableMeta, updateValue) => {
           return tableMeta.rowIndex + 1;
         },
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
     {
@@ -75,6 +76,7 @@ const MyEvents = () => {
             {value ? "Free Event" : "Paid Event"}
           </div>
         ),
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
     {
@@ -83,7 +85,7 @@ const MyEvents = () => {
       title: "Fee",
       options: {
         customBodyRender: (value) => (
-          <p className="py-3">Rp. {value?.toLocaleString("en-US")}</p>
+          <p className="py-3 w-[100px]">Rp. {value?.toLocaleString("en-US")}</p>
         ),
       },
     },
@@ -100,6 +102,7 @@ const MyEvents = () => {
             Open
           </a>
         ),
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
   ];

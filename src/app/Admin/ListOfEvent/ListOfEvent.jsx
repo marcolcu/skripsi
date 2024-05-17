@@ -76,6 +76,8 @@ const ListOfEvent = () => {
         customBodyRender: (value, tableMeta, updateValue) => {
           return tableMeta.rowIndex + 1;
         },
+        setCellProps: () => ({ className: "text-center" }),
+        setCellHeaderProps: () => ({ className: "flex justify-center" }),
       },
     },
     {
@@ -92,13 +94,19 @@ const ListOfEvent = () => {
       name: "totalParticipant",
       label: "Total Participant",
       title: "Total Participant",
+      options: {
+        setCellProps: () => ({ className: "text-center" }),
+        setCellHeaderProps: () => ({ className: "flex justify-center" }),
+      },
     },
     {
       name: "closed",
       label: " ",
       title: "",
       options: {
+        filter: false,
         sort: false,
+        viewColumns: false,
         customBodyRender: (value, tableMeta) => {
           if (value === true) {
             return (
@@ -128,6 +136,8 @@ const ListOfEvent = () => {
       label: " ",
       title: " ",
       options: {
+        filter: false,
+        viewColumns: false,
         customHeadRender: () => null,
         customBodyRender: (value) => (
           <button className="btn">
@@ -138,20 +148,23 @@ const ListOfEvent = () => {
     },
     {
       name: "id",
-      label: "",
+      label: " ",
       title: "",
       options: {
+        filter: false,
+        viewColumns: false,
         customHeadRender: () => null,
         customBodyRender: (value) => (
           <button className="">
             <a
-              className="text-blue-600"
+              className="inline-block bg-cyan-200 hover:bg-cyan-300 text-gray-800 font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
               href={`/Admin/ListOfEvent/edit/${value}`}
             >
               Edit
             </a>
           </button>
         ),
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
   ];
