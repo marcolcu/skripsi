@@ -145,7 +145,7 @@ const Profile = () => {
   return (
     <div
       className="max-w-screen-xl mx-auto my-9 px-10"
-      style={{ height: "54vh" }}
+      style={{ height: "100vh" }}
     >
       {loading ? (
         <ProfileSkeleton />
