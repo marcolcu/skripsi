@@ -183,7 +183,7 @@ const Profile = () => {
                 {data?.firstName}&nbsp;{data?.lastName}
               </h1>
               <p>
-                {data?.role === "ROLE_USER" ? "User" : "Admin"} - {data?.email}
+                {data?.userRole === "ROLE_USER" ? "User" : "Admin"} - {data?.email}
               </p>
             </div>
           </div>
