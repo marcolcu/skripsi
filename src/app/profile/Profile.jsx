@@ -48,6 +48,7 @@ const Profile = () => {
       dispatch({
         user: editUser?.value
       })
+      toast.success("Successfully updated");
     }
   }, [editUser]);
 
