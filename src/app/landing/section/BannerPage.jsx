@@ -9,10 +9,6 @@ const BannerPage = () => {
         alt="Deskripsi gambar"
         className="w-full h-auto rounded-[2rem]"
       />
-
-      <div className="font-bold py-5">
-        <p>DWP XV 15TH ANNIVERSARY EDITION</p>
-      </div>
     </main>
   );
 };
