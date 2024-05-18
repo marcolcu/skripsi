@@ -70,6 +70,7 @@ const fetchDataHooks = async ({ urlPath, header, queryParams, option }) => {
 
     const headers = {
       Authorization: `${token}`,
+      "ngrok-skip-browser-warning": "69420",
       ...header,
     };
 
