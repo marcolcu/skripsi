@@ -7,7 +7,7 @@ import {
 } from "@/services/useEventServices";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPin, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import Card from "@/app/landing/section/Card";
 import EventDetailSkeleton from "./EventDetailSkeleton";
@@ -109,7 +109,7 @@ const EventDetailPage = ({ slug }) => {
     const startTimeString = `${hours}:${minutes}`;
 
     return startTimeString;
-  }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto px-10">
@@ -148,6 +148,11 @@ const EventDetailPage = ({ slug }) => {
                     &nbsp; {formatDate(eventDetail?.value?.dateHeld)}
                     &nbsp;T&nbsp;{formatStartTime(eventDetail?.value?.dateHeld)}
                   </div>
+                  <div>
+                    <FontAwesomeIcon icon={faUser} />
+                    &nbsp; {eventDetail?.value?.totalParticipant}/
+                    {eventDetail?.value?.maxCapacity}
+                  </div>
                 </div>
                 {/* Right Side */}
                 <div className="right">
@@ -171,12 +176,20 @@ const EventDetailPage = ({ slug }) => {
                   )}
 
                   {/* Button Buy */}
-                  <button
-                    className="bg-cyan-200 rounded-2xl text-center w-[150px] h-[50px]"
-                    onClick={buyClick}
-                  >
-                    Buy
-                  </button>
+                  {eventDetail?.value?.closed ? (
+                    <button
+                      className="bg-gray-200 rounded-2xl text-center w-[150px] h-[50px] pointer-events-none"
+                    >
+                      Closed
+                    </button>
+                  ) : (
+                    <button
+                      className="bg-cyan-200 rounded-2xl text-center w-[150px] h-[50px]"
+                      onClick={buyClick}
+                    >
+                      Register
+                    </button>
+                  )}
                 </div>
               </div>
 
