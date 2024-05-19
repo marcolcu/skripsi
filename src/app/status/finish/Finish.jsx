@@ -717,10 +717,10 @@ const Finish = () => {
       .add({
         complete: function () {
           router.prefetch(
-            "/orders/event/" + eventConfirmation?.value?.registrationCode
+            "/orders/event/" + state?.registrationCode
           );
           router.push(
-            "/orders/event/" + eventConfirmation?.value?.registrationCode
+            "/orders/event/" + state?.registrationCode
           );
         },
       });
