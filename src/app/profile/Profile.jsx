@@ -48,6 +48,7 @@ const Profile = () => {
       dispatch({
         user: editUser?.value
       })
+      toast.success("Successfully updated");
     }
   }, [editUser]);
 
@@ -145,7 +146,7 @@ const Profile = () => {
   return (
     <div
       className="max-w-screen-xl mx-auto my-9 px-10"
-      style={{ height: "54vh" }}
+      style={{ height: "100vh" }}
     >
       {loading ? (
         <ProfileSkeleton />
@@ -182,7 +183,7 @@ const Profile = () => {
                 {data?.firstName}&nbsp;{data?.lastName}
               </h1>
               <p>
-                {data?.role === "ROLE_USER" ? "User" : "Admin"} - {data?.email}
+                {data?.userRole === "ROLE_USER" ? "User" : "Admin"} - {data?.email}
               </p>
             </div>
           </div>
