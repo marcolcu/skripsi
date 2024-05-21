@@ -62,7 +62,7 @@ const EventList = () => {
                   }
                   alt={event.name}
                   className={`w-full h-[440px] object-cover object-center rounded-[2rem] ${
-                    event?.imageUrl ? "bg-gradient-to-t from-black" : ""
+                    event?.imageUrl !== null? "bg-gradient-to-t from-black" : ""
                   }`}
                 />
                 <div className="absolute bottom-0 left-0 right-0 ">
