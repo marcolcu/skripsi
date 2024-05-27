@@ -44,6 +44,7 @@ const MyVenues = () => {
         customBodyRender: (value, tableMeta, updateValue) => {
           return tableMeta.rowIndex + 1;
         },
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
     {
@@ -75,6 +76,7 @@ const MyVenues = () => {
             <span className="capitalize">{value}</span>
           </div>
         ),
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
     {
@@ -90,6 +92,7 @@ const MyVenues = () => {
             Open
           </a>
         ),
+        setCellProps: () => ({ className: "text-center" }),
       },
     },
   ];

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useGetVenue, useVenueAllFiltered } from "@/services/useVenueServices";
 import VenueListSkeleton from "./VenueListSkeleton";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/St/ReactToastify.css";
 
 const VenueList = () => {
   const { fetchVenue, venue, venueLoading } = useGetVenue();
@@ -118,6 +118,20 @@ const VenueList = () => {
     }
   };
 
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const hourString = hour.toString().padStart(2, "0");
+        const minuteString = minute.toString().padStart(2, "0");
+        times.push(`${hourString}:${minuteString}`);
+      }
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   return (
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
       {loading ? (
@@ -131,14 +145,23 @@ const VenueList = () => {
                 className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                 value={reservedDate}
                 onChange={(e) => setReservedDate(e.target.value)}
+                min={new Date().toISOString().split("T")[0]}
               />
 
-              <input
-                type="time"
-                className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-              />
+              <div>
+                <input
+                  type="time"
+                  className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 h-[2.7rem] text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  list="time-options"
+                />
+                <datalist id="time-options">
+                  {timeOptions.map((timeOption) => (
+                    <option key={timeOption} value={timeOption} />
+                  ))}
+                </datalist>
+              </div>
 
               <div className="relative">
                 <select
@@ -181,50 +204,63 @@ const VenueList = () => {
               </button>
             </div>
           </div>
-
-          {venues.slice(0, visibleVenues).map((venue, index) => (
-            <a
-              href="#"
-              key={index}
-              onClick={() =>
-                handleRouting(reservedDate, time, duration, venue?.id)
-              }
-            >
-              <div className="relative mb-5">
-                <img
-                  src={
-                    venue.imageUrl ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiLff5M2CCoLu58Ybuz4BjyfYqTe3Ffv6Mng&usqp=CAU"
+          {venues === null ? (
+            <>
+              <div className="text-center">No Data</div>
+            </>
+          ) : (
+            <>
+              {venues.slice(0, visibleVenues).map((venue, index) => (
+                <a
+                  href="#"
+                  key={index}
+                  onClick={() =>
+                    handleRouting(reservedDate, time, duration, venue?.id)
                   }
-                  alt={venue.name}
-                  className={`w-full h-[440px] object-cover object-center rounded-[2rem] ${
-                    venue?.imageUrl ? "bg-gradient-to-t from-black" : ""
-                  }`}
-                />
-                <div
-                  className="absolute bottom-0 left-0 right-0 text-overlay"
                 >
-                  <div
-                    className={`p-6 ${
-                      venue?.imageUrl ? "text-white" : "text-black"
-                    }`}
-                  >
-                    <p className="font-bold text-4xl ">{venue.name}</p>
-                    <p className="font-medium text-md ">{venue.location}</p>
+                  <div className="relative mb-5">
+                    <div className="relative">
+                      <img
+                        src={
+                          venue.imageUrl ||
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiLff5M2CCoLu58Ybuz4BjyfYqTe3Ffv6Mng&usqp=CAU"
+                        }
+                        alt={venue.name}
+                        className="w-full h-[440px] object-cover object-center rounded-[2rem]"
+                      />
+                      <div
+                        className={`${
+                          venue?.imageUrl !== null
+                            ? "absolute inset-0 bg-gradient-to-t from-black opacity-50 rounded-[2rem]"
+                            : ""
+                        }`}
+                      ></div>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 ">
+                      <div
+                        className={`p-6 ${
+                          venue?.imageUrl ? "text-white" : "text-black"
+                        }`}
+                      >
+                        <p className="font-bold text-4xl ">{venue.name}</p>
+                        <p className="font-medium text-md ">{venue.location}</p>
+                      </div>
+                    </div>
                   </div>
+                </a>
+              ))}
+              {visibleVenues < venues.length && (
+                <div className="w-full flex justify-center">
+                  <button
+                    onClick={handleLoadMore}
+                    className="bg-cyan-200 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded-full mt-4"
+                  >
+                    Load More
+                  </button>
                 </div>
-              </div>
-            </a>
-          ))}
-          {visibleVenues < venues.length && (
-            <div className="w-full flex justify-center">
-              <button
-                onClick={handleLoadMore}
-                className="bg-cyan-200 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded-full mt-4"
-              >
-                Load More
-              </button>
-            </div>
+              )}
+            </>
           )}
         </>
       )}

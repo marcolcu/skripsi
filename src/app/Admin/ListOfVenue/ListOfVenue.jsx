@@ -74,6 +74,8 @@ const ListOfVenue = () => {
         customBodyRender: (value, tableMeta, updateValue) => {
           return tableMeta.rowIndex + 1;
         },
+        setCellProps: () => ({ className: "text-center" }),
+        setCellHeaderProps: () => ({ className: "flex justify-center" }),
       },
     },
     {
@@ -90,13 +92,19 @@ const ListOfVenue = () => {
       name: "totalBookings",
       label: "Total Bookings",
       title: "Total Bookings",
+      options: {
+        setCellProps: () => ({ className: "text-center" }),
+        setCellHeaderProps: () => ({ className: "flex justify-center" }),
+      },
     },
     {
       name: "disabled",
       label: " ",
       title: "Status",
       options: {
+        filter: false,
         sort: false,
+        viewColumns: false,
         customBodyRender: (value, tableMeta) => {
           if (value === true) {
             return (
@@ -127,6 +135,9 @@ const ListOfVenue = () => {
       label: " ",
       title: " ",
       options: {
+        filter: false,
+        sort: false,
+        viewColumns: false,
         customHeadRender: () => null,
         customBodyRender: (value) => (
           <button className="btn">
@@ -144,7 +155,7 @@ const ListOfVenue = () => {
         customBodyRender: (value) => (
           <button>
             <a
-              className="text-blue-600"
+              className="inline-block bg-cyan-200 hover:bg-cyan-300 text-gray-800 font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
               href={`/Admin/ListOfVenue/edit/${value}`}
             >
               Edit

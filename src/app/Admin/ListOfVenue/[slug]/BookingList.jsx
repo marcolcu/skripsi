@@ -33,14 +33,13 @@ const BookingList = ({ slug }) => {
   };
 
   useEffect(() => {
-    if (venueRegistrationListAdmin) {
+    if (venueRegistrationListAdmin?.success === true) {
       let newData = venueRegistrationListAdmin.value.map((venue) => ({
         ...venue,
         fullname: `${venue.user.firstName || ""} ${
           venue.user.lastName || ""
         }`.trim(),
       }));
-      console.log(newData);
       setData(newData);
     }
   }, [venueRegistrationListAdmin]);
@@ -153,6 +152,18 @@ const BookingList = ({ slug }) => {
     print: false,
     download: false,
     enableNestedDataAccess: ".",
+    emptyRowsOption: () => (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <p>There is no data to display.</p>
+      </Box>
+    ),
   };
 
   return (

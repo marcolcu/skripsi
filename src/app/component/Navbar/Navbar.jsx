@@ -10,6 +10,7 @@ import CreateVenue from "../../Admin/createVenue/AdminCreateVenue";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { state, dispatch } = useAppContext();
   const router = useRouter();
 
@@ -25,6 +26,12 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (state) {
+      setLoading(false);
+    }
+  }, [setLoading, state]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -46,7 +53,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40">
+    <div
+      className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40"
+      style={{ width: "-webkit-fill-available" }}
+    >
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
           scrolled ? "backdrop-blur-2xl bg-white/30 " : "bg-cyan-50"
@@ -54,9 +64,7 @@ const Navbar = () => {
       >
         <div className="flex w-full lg:w-auto items-center justify-between">
           <a href="/" className="text-lg">
-            <span className={`font-bold  ${scrolled ? "" : ""}`}>
-              Event App
-            </span>
+            <span className={`font-bold  ${scrolled ? "" : ""}`}>Venn.io</span>
           </a>
         </div>
 
@@ -133,41 +141,68 @@ const Navbar = () => {
               </>
             )}
 
-            {state?.token === null && (
+            {loading ? (
               <>
                 <li>
-                  <Link
-                    href="/"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                    prefetch
-                  >
-                    <span className="font-semibold"> Home</span>
-                  </Link>
+                  <div className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2">
+                    <span className="animate-pulse rounded-full bg-gray-200 h-6 w-16 mr-2"></span>
+                  </div>
                 </li>
                 <li>
-                  <Link
-                    href="/aboutus"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                    prefetch
-                  >
-                    <span className="font-semibold">About Us</span>
-                  </Link>
+                  <div className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2">
+                    <span className="animate-pulse rounded-full bg-gray-200 h-6 w-16 mr-2"></span>
+                  </div>
                 </li>
                 <li>
-                  <Link
-                    href="/feature"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                    prefetch
-                  >
-                    <span className="font-semibold">Features</span>
-                  </Link>
+                  <div className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2">
+                    <span className="animate-pulse rounded-full bg-gray-200 h-6 w-16 mr-2"></span>
+                  </div>
                 </li>
               </>
+            ) : (
+              state?.token === null && (
+                <>
+                  <li>
+                    <Link
+                      href="/"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                      prefetch
+                    >
+                      <span className="font-semibold"> Home</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/aboutus"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                      prefetch
+                    >
+                      <span className="font-semibold">About Us</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/feature"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                      prefetch
+                    >
+                      <span className="font-semibold">Features</span>
+                    </Link>
+                  </li>
+                </>
+              )
             )}
           </ul>
         </nav>
 
-        {state?.token ? (
+        {loading ? (
+          <>
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="w-[95px] h-[43px] rounded-full bg-gray-200 animate-pulse"></div>
+              <div className="w-[95px] h-[43px] bg-gray-200 animate-pulse rounded-full font-semibold hover:underline hover:underline-offset-2 decoration-2"></div>
+            </div>
+          </>
+        ) : state?.token ? (
           <div className="hidden lg:flex items-center gap-4">
             <div className="relative inline-block">
               <button
@@ -210,26 +245,30 @@ const Navbar = () => {
                         Profile
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        href="/orders/myevents"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        prefetch
-                        onClick={closeDropdown}
-                      >
-                        My Events
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/orders/myvenues"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        prefetch
-                        onClick={closeDropdown}
-                      >
-                        My Venue Bookings
-                      </Link>
-                    </li>
+                    {state?.user?.userRole === "ROLE_USER" && (
+                      <>
+                        <li>
+                          <Link
+                            href="/orders/myevents"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            prefetch
+                            onClick={closeDropdown}
+                          >
+                            My Events
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/orders/myvenues"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            prefetch
+                            onClick={closeDropdown}
+                          >
+                            My Venue Bookings
+                          </Link>
+                        </li>
+                      </>
+                    )}
                     <hr />
                     <li>
                       <a

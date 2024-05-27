@@ -67,6 +67,10 @@ const RegistrationList = ({ slug }) => {
         customBodyRender: (value, tableMeta, updateValue) => {
           return tableMeta.rowIndex + 1;
         },
+        setCellProps: () => ({ className: "text-center" }),
+        setCellHeaderProps: () => ({
+          className: "text-center flex justify-center",
+        }),
       },
     },
     {

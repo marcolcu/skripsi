@@ -160,6 +160,20 @@ const VenueDetailPage = ({ slug }) => {
     dispatch({ venueId: slug });
   };
 
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const hourString = hour.toString().padStart(2, "0");
+        const minuteString = minute.toString().padStart(2, "0");
+        times.push(`${hourString}:${minuteString}`);
+      }
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   return (
     <div className="max-w-screen-xl mx-auto px-10">
       {loading ? (
@@ -203,14 +217,20 @@ const VenueDetailPage = ({ slug }) => {
                       className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                       value={reservedDate}
                       onChange={(e) => setReservedDate(e.target.value)}
+                      min={new Date().toISOString().split("T")[0]}
                     />
 
-                    <input
-                      type="time"
-                      className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
+                    <select
+                      className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 h-[2.7rem] text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
-                    />
+                    >
+                      {timeOptions.map((timeOption) => (
+                        <option key={timeOption} value={timeOption}>
+                          {timeOption}
+                        </option>
+                      ))}
+                    </select>
 
                     <div className="relative">
                       <select

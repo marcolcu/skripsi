@@ -7,7 +7,7 @@ import {
 } from "@/services/useEventServices";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPin, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import Card from "@/app/landing/section/Card";
 import EventDetailSkeleton from "./EventDetailSkeleton";
@@ -92,6 +92,11 @@ const EventDetailPage = ({ slug }) => {
     dispatch({ eventId: slug });
   };
 
+  const handleError = (errorMessage) => {
+    toast.error(errorMessage);
+    setIsBuyClicked(false);
+  };
+
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     const day = date.getDate().toString().padStart(2, "0");
@@ -109,7 +114,7 @@ const EventDetailPage = ({ slug }) => {
     const startTimeString = `${hours}:${minutes}`;
 
     return startTimeString;
-  }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto px-10">
@@ -131,7 +136,7 @@ const EventDetailPage = ({ slug }) => {
             <p className="text-[2rem] mt-4">{eventDetail?.value?.name}</p>
           </div>
           {isBuyClicked ? (
-            <Confirmation event={eventDetail} />
+            <Confirmation event={eventDetail} onError={handleError} />
           ) : (
             <>
               <div className="flex justify-between mt-5">
@@ -147,6 +152,11 @@ const EventDetailPage = ({ slug }) => {
                     <FontAwesomeIcon icon={faCalendar} />
                     &nbsp; {formatDate(eventDetail?.value?.dateHeld)}
                     &nbsp;T&nbsp;{formatStartTime(eventDetail?.value?.dateHeld)}
+                  </div>
+                  <div>
+                    <FontAwesomeIcon icon={faUser} />
+                    &nbsp; {eventDetail?.value?.totalParticipant}/
+                    {eventDetail?.value?.maxCapacity}
                   </div>
                 </div>
                 {/* Right Side */}
@@ -171,12 +181,18 @@ const EventDetailPage = ({ slug }) => {
                   )}
 
                   {/* Button Buy */}
-                  <button
-                    className="bg-cyan-200 rounded-2xl text-center w-[150px] h-[50px]"
-                    onClick={buyClick}
-                  >
-                    Buy
-                  </button>
+                  {eventDetail?.value?.closed ? (
+                    <button className="bg-gray-200 rounded-2xl text-center w-[150px] h-[50px] pointer-events-none">
+                      Closed
+                    </button>
+                  ) : (
+                    <button
+                      className="bg-cyan-200 rounded-2xl text-center w-[150px] h-[50px]"
+                      onClick={buyClick}
+                    >
+                      Register
+                    </button>
+                  )}
                 </div>
               </div>
 

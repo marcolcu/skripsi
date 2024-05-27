@@ -716,34 +716,15 @@ const Finish = () => {
 
       .add({
         complete: function () {
-          if (state?.registrationCode) {
-            let statusMessage =
-              state?.statusPayment === "200" ? "success" : "fail";
-  
-            postEventConfirmation({
-              header: {
-                Authorization: "Bearer " + state?.token,
-              },
-              body: {
-                registrationCode: state?.registrationCode,
-                status: statusMessage,
-              },
-            });
-          }
+          router.prefetch(
+            "/orders/event/" + state?.registrationCode
+          );
+          router.push(
+            "/orders/event/" + state?.registrationCode
+          );
         },
       });
   }, [state]);
-
-  useEffect(() => {
-    if (eventConfirmation?.success) {
-      router.prefetch(
-        "/orders/event/" + eventConfirmation?.value?.registrationCode
-      );
-      router.push(
-        "/orders/event/" + eventConfirmation?.value?.registrationCode
-      );
-    }
-  }, [eventConfirmation]);
 
   return (
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
