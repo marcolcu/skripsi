@@ -102,7 +102,7 @@ const AdminEditEvent = ({ slug }) => {
         capacity: maxCapacity || "",
         description: description || "",
         duration: duration || "",
-        fee: registrationFee || "",
+        fee: registrationFee ?? "",
         location: location || "",
         image: imageUrl || null,
         date: `${year}-${month}-${day}`, // Format: YYYY-MM-DD

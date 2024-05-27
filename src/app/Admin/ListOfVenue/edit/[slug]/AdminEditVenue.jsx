@@ -113,9 +113,9 @@ const AdminEditVenue = ({ slug }) => {
   useEffect(() => {
     if (editVenue && editVenue.errorMessage === null) {
       toast.success("Venue edited successfully");
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 3000);
     } else if (editVenue && editVenue.errorMessage) {
       toast.error(editVenue.errorMessage);
     }

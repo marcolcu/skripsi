@@ -201,7 +201,9 @@ const VenueList = () => {
                     venue?.imageUrl ? "bg-gradient-to-t from-black" : ""
                   }`}
                 />
-                <div className="absolute bottom-0 left-0 right-0 ">
+                <div
+                  className="absolute bottom-0 left-0 right-0 text-overlay"
+                >
                   <div
                     className={`p-6 ${
                       venue?.imageUrl ? "text-white" : "text-black"

@@ -9,10 +9,8 @@ import ModalBookingCancel from "../../AdminComponent/ModalBookingCancel";
 
 const BookingList = ({ slug }) => {
   const { state } = useAppContext();
-  const {
-    fetchVenueRegistrationListAdmin,
-    venueRegistrationListAdmin,
-  } = useGetVenueRegistrationListAdmin();
+  const { fetchVenueRegistrationListAdmin, venueRegistrationListAdmin } =
+    useGetVenueRegistrationListAdmin();
   const [data, setData] = useState([]);
   const [openAlert, setOpenAlert] = useState(false);
   const [openModalBookingCancel, setOpenModalBookingCancel] = useState(false);
@@ -167,11 +165,11 @@ const BookingList = ({ slug }) => {
           options={options}
         />
       </div>
-      <Box className="fixed top-0 left-0 w-full">
+      <Box className="fixed top-0 left-0 w-full z-50">
         <Collapse in={openAlert}>
           <Alert
             severity="success"
-            className="flex items-center text-lg py-4 z-50"
+            className="flex items-center text-lg py-4"
             action={
               <IconButton
                 onClick={() => {

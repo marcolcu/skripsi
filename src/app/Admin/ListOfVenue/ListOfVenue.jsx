@@ -14,7 +14,7 @@ const ListOfVenue = () => {
   const { state } = useAppContext();
   const [loading, setLoading] = useState(true);
   const { fetchVenueAdmin, venueAdmin } = useGetVenueAdmin();
-  var data = venueAdmin?.value;
+  var data = venueAdmin?.value || [];
 
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [venueIdToDisable, setVenueIdToDisable] = useState();
@@ -102,7 +102,7 @@ const ListOfVenue = () => {
             return (
               <button className="pointer-events-none w-36">
                 <a className="pointer-events-none bg-green-200 text-green-600 p-1 px-5 text-center rounded-full w-[150px] ">
-                  Venue Disabled
+                  Disabled
                 </a>
               </button>
             );
@@ -114,7 +114,7 @@ const ListOfVenue = () => {
                 className="w-36"
               >
                 <a className="bg-red-200 text-red-600 p-1 px-5 text-center rounded-full w-[150px]">
-                  Disable Venue
+                  Disable
                 </a>
               </button>
             );
@@ -194,11 +194,11 @@ const ListOfVenue = () => {
             </div>
           </div>
         )}
-        <Box className="fixed top-0 left-0 w-full">
+        <Box className="fixed top-0 left-0 w-full  z-50">
           <Collapse in={openAlert}>
             <Alert
               severity="success"
-              className="flex items-center text-lg py-4 z-50"
+              className="flex items-center text-lg py-4"
               action={
                 <IconButton
                   onClick={() => {
