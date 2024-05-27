@@ -14,7 +14,7 @@ const ListOfEvent = () => {
   const { state } = useAppContext();
   const [loading, setLoading] = useState(true);
   const { fetchEventAdmin, eventAdmin } = useGetEventAdmin();
-  var data = eventAdmin?.value;
+  var data = eventAdmin?.value || [];
 
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [eventIdToDisable, setEventIdToDisable] = useState();
@@ -105,7 +105,7 @@ const ListOfEvent = () => {
             return (
               <button className="pointer-events-none">
                 <a className="pointer-events-none bg-green-200 text-green-600 p-1 px-5 text-center rounded-full w-[150px]">
-                  Event Disabled
+                  Disabled
                 </a>
               </button>
             );
@@ -116,7 +116,7 @@ const ListOfEvent = () => {
                 onClick={() => handleDisableConfirmation(tableMeta.rowData[0])}
               >
                 <a className="bg-red-200 text-red-600 p-1 px-5 text-center rounded-full w-[150px]">
-                  Disable Event
+                  Disable
                 </a>
               </button>
             );
@@ -201,11 +201,11 @@ const ListOfEvent = () => {
             </div>
           </div>
         )}
-        <Box className="fixed top-0 left-0 w-full">
+        <Box className="fixed top-0 left-0 w-full z-50">
           <Collapse in={openAlert}>
             <Alert
               severity="success"
-              className="flex items-center text-lg py-4 z-50"
+              className="flex items-center text-lg py-4 "
               action={
                 <IconButton
                   onClick={() => {
