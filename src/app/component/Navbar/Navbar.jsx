@@ -298,7 +298,7 @@ const Navbar = () => {
               className="font-semibold hover:underline hover:underline-offset-2 decoration-2"
               prefetch
             >
-              Log in
+              Login
             </Link>
           </div>
         )}
