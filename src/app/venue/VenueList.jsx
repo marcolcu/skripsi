@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useGetVenue, useVenueAllFiltered } from "@/services/useVenueServices";
 import VenueListSkeleton from "./VenueListSkeleton";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/St/ReactToastify.css";
 
 const VenueList = () => {
   const { fetchVenue, venue, venueLoading } = useGetVenue();
