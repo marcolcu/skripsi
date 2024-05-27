@@ -10,7 +10,7 @@ import {
 import "../../../AdminCSS/Admin.css";
 
 const AdminEditEvent = ({ slug }) => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [eventImageUrl, setEventImageUrl] = useState(null);

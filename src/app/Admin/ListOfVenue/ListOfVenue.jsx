@@ -11,7 +11,7 @@ import { Box, Alert, IconButton, Collapse } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const ListOfVenue = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [loading, setLoading] = useState(true);
   const { fetchVenueAdmin, venueAdmin } = useGetVenueAdmin();
   var data = venueAdmin?.value;
@@ -20,14 +20,7 @@ const ListOfVenue = () => {
   const [venueIdToDisable, setVenueIdToDisable] = useState();
   const [openAlert, setOpenAlert] = useState(false);
 
-  const {
-    postDisableVenue,
-    disableVenue,
-    disableVenueLoading,
-    disableVenueStatus,
-    disableVenueError,
-    disableVenueIsError,
-  } = useDisableVenue();
+  const { postDisableVenue } = useDisableVenue();
 
   useEffect(() => {
     const timer = setTimeout(() => {

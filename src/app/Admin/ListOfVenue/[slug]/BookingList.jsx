@@ -8,15 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import ModalBookingCancel from "../../AdminComponent/ModalBookingCancel";
 
 const BookingList = ({ slug }) => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const {
     fetchVenueRegistrationListAdmin,
     venueRegistrationListAdmin,
-    venueRegistrationListAdminMessage,
-    venueRegistrationListAdminLoading,
-    venueRegistrationListAdminStatus,
-    venueRegistrationListAdminError,
-    venueRegistrationListAdminIsError,
   } = useGetVenueRegistrationListAdmin();
   const [data, setData] = useState([]);
   const [openAlert, setOpenAlert] = useState(false);
@@ -27,7 +22,6 @@ const BookingList = ({ slug }) => {
     if (booking) {
       setSelectedBooking(booking);
       setOpenModalBookingCancel(true);
-      // console.log(booking);
     } else {
       console.error("Booking object is null or undefined.");
     }

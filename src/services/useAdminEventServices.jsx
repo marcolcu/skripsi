@@ -125,6 +125,7 @@ export const useGetEventDetailAdmin = () => {
     eventDetailAdminIsError: isError,
   };
 };
+
 export const useEditEvent = () => {
   const { postData, data, loading, message, status, error, isError } =
     usePostData();

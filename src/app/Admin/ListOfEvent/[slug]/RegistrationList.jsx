@@ -11,15 +11,10 @@ const RegistrationList = ({ slug }) => {
   const {
     fetchEventBookingListAdmin,
     eventBookingListAdmin,
-    eventBookingListAdminMessage,
-    eventBookingListAdminLoading,
-    eventBookingListAdminStatus,
-    eventBookingListAdminError,
-    eventBookingListAdminIsError,
   } = useGetEventBookingListAdmin();
 
   const [data, setData] = useState([]);
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [openModalBookingCancel, setOpenModalBookingCancel] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const [selectedRegistration, setSelectedRegistration] = useState(null);
