@@ -16,7 +16,8 @@ const Profile = () => {
   const [lastName, setLastName] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [curPassword, setCurPassword] = useState("");
   const inputRef = useRef(null);
   const { fetchGetUser, user, userLoading } = useGetUser();
   const { postEditUser, editUser, editUserLoading } = useEditUser();
@@ -46,9 +47,11 @@ const Profile = () => {
     if (editUser?.success) {
       getDataUser();
       dispatch({
-        user: editUser?.value
-      })
+        user: editUser?.value,
+      });
       toast.success("Successfully updated");
+    } else {
+      toast.error(editUser?.errorMessage);
     }
   }, [editUser]);
 
@@ -92,25 +95,22 @@ const Profile = () => {
   };
 
   const handleSubmit = () => {
-    if (password === "") {
-      toast.error("Please fill in your password");
-    } else {
-      postEditUser({
-        header: {
-          Authorization: "Bearer " + state?.token,
-        },
-        body: {
-          currentEmail: state?.user?.email,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          gender: state?.user?.gender,
-          phoneNo: phoneNo,
-          imageUrl: image,
-        },
-      });
-    }
+    postEditUser({
+      header: {
+        Authorization: "Bearer " + state?.token,
+      },
+      body: {
+        currentEmail: state?.user?.email,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: newPassword,
+        currentPassword: curPassword,
+        gender: state?.user?.gender,
+        phoneNo: phoneNo,
+        imageUrl: image,
+      },
+    });
   };
 
   const handleChange = (e) => {
@@ -142,12 +142,8 @@ const Profile = () => {
     }
   };
 
-
   return (
-    <div
-      className="max-w-screen-xl mx-auto my-9 px-10"
-      style={{ height: "100vh" }}
-    >
+    <div className="max-w-screen-xl mx-auto my-9 px-10">
       {loading ? (
         <ProfileSkeleton />
       ) : (
@@ -183,7 +179,8 @@ const Profile = () => {
                 {data?.firstName}&nbsp;{data?.lastName}
               </h1>
               <p>
-                {data?.userRole === "ROLE_USER" ? "User" : "Admin"} - {data?.email}
+                {data?.userRole === "ROLE_USER" ? "User" : "Admin"} -{" "}
+                {data?.email}
               </p>
             </div>
           </div>
@@ -239,11 +236,21 @@ const Profile = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td>Password:</td>
+                  <td>Current Password:</td>
                   <td>
                     <input
                       type="password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setCurPassword(e.target.value)}
+                      className="w-full bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>New Password:</td>
+                  <td>
+                    <input
+                      type="password"
+                      onChange={(e) => setNewPassword(e.target.value)}
                       className="w-full bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500"
                     />
                   </td>

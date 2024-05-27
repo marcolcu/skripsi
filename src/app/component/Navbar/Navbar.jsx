@@ -53,7 +53,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40">
+    <div
+      className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40"
+      style={{ width: "-webkit-fill-available" }}
+    >
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
           scrolled ? "backdrop-blur-2xl bg-white/30 " : "bg-cyan-50"

@@ -50,21 +50,31 @@ const EventList = () => {
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
       {loading ? (
         <EventListSkeleton />
+      ) : events === null ? (
+        <div className="text-center">No Data</div>
       ) : (
         <>
           {events.slice(0, visibleEvents).map((event, index) => (
             <Link href={`/event/${event?.id}`} key={index} prefetch>
               <div className="relative mb-5">
-                <img
-                  src={
-                    event.imageUrl ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiLff5M2CCoLu58Ybuz4BjyfYqTe3Ffv6Mng&usqp=CAU"
-                  }
-                  alt={event.name}
-                  className={`w-full h-[440px] object-cover object-center rounded-[2rem] ${
-                    event?.imageUrl !== null? "bg-gradient-to-t from-black" : ""
-                  }`}
-                />
+                <div className="relative">
+                  <img
+                    src={
+                      event.imageUrl ||
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiLff5M2CCoLu58Ybuz4BjyfYqTe3Ffv6Mng&usqp=CAU"
+                    }
+                    alt={event.name}
+                    className="w-full h-[440px] object-cover object-center rounded-[2rem]"
+                  />
+                  <div
+                    className={`${
+                      event?.imageUrl !== null
+                        ? "absolute inset-0 bg-gradient-to-t from-black opacity-50 rounded-[2rem]"
+                        : ""
+                    }`}
+                  ></div>
+                </div>
+
                 <div className="absolute bottom-0 left-0 right-0 ">
                   <div
                     className={`p-6 ${

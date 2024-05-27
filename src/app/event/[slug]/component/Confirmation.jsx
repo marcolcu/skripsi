@@ -1,12 +1,15 @@
 "use client";
 import { useAppContext } from "@/app/provider";
-import { useEventPayment, useEventRegistration } from "@/services/useEventServices";
+import {
+  useEventPayment,
+  useEventRegistration,
+} from "@/services/useEventServices";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Confirmation = ({ event }) => {
+const Confirmation = ({ event, onError }) => {
   const { state, dispatch } = useAppContext();
   const router = useRouter();
   const [isEventPaymentAvailable, setIsEventPaymentAvailable] = useState(false);
@@ -16,7 +19,10 @@ const Confirmation = ({ event }) => {
     useEventRegistration();
 
   useEffect(() => {
-    if (eventRegistration?.success && eventRegistration?.value?.event?.free === false) {
+    if (
+      eventRegistration?.success &&
+      eventRegistration?.value?.event?.free === false
+    ) {
       postEventPayment({
         header: {
           Authorization: "Bearer " + state?.token,
@@ -55,8 +61,8 @@ const Confirmation = ({ event }) => {
         router.prefetch(eventPayment?.value?.redirectUrl);
         router.push(eventPayment?.value?.redirectUrl);
       }
-    } else {
-      toast.error(eventRegistration?.errorMessage);
+    } else if (eventRegistration?.success === false) {
+      onError(eventRegistration?.errorMessage || "Registration failed.");
     }
   }, [eventRegistration, eventPayment]);
 
@@ -95,6 +101,7 @@ const Confirmation = ({ event }) => {
 
   return (
     <main>
+      <h1 className="font-bold text-xl my-9">Confirmation Page</h1>
       {/* Table */}
       <table className="table-auto">
         <tbody>
@@ -129,7 +136,7 @@ const Confirmation = ({ event }) => {
         className="w-full bg-cyan-200 mb-5 p-3 rounded-lg"
         onClick={payment}
       >
-        {eventRegistrationLoading ? "Loading..." : "Register"}
+        {eventRegistrationLoading ? "Loading..." : "Confirm Registration"}
       </button>
     </main>
   );
