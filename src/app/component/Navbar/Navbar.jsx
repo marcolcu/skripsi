@@ -100,6 +100,24 @@ const Navbar = () => {
                     <span className="font-semibold">Find an Event</span>
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/aboutus"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold">About Us</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/feature"
+                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    prefetch
+                  >
+                    <span className="font-semibold">Features</span>
+                  </Link>
+                </li>
               </>
             )}
 
