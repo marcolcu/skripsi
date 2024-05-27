@@ -12,13 +12,13 @@ const Status = () => {
   const { postEventConfirmation, eventConfirmation, eventConfirmationLoading } =
     useEventConfirmation();
 
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search);
-        const statusCode = urlParams.get("status_code");
-        setStatusCode(statusCode);
-      }
-    }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const statusCode = urlParams.get("status_code");
+      setStatusCode(statusCode);
+    }
+  }, []);
 
   useEffect(() => {
     if (state?.registrationCode) {
@@ -37,10 +37,12 @@ const Status = () => {
   }, [state]);
 
   useEffect(() => {
+    console.log(statusCode);
     if (statusCode === "200") {
       router.prefetch("/status/finish");
       router.push("/status/finish");
     } else if (statusCode === "201") {
+      console.log("masuk");
       router.prefetch("/status/failed");
       router.push("/status/failed");
     }

@@ -92,6 +92,11 @@ const EventDetailPage = ({ slug }) => {
     dispatch({ eventId: slug });
   };
 
+  const handleError = (errorMessage) => {
+    toast.error(errorMessage);
+    setIsBuyClicked(false);
+  };
+
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     const day = date.getDate().toString().padStart(2, "0");
@@ -131,7 +136,7 @@ const EventDetailPage = ({ slug }) => {
             <p className="text-[2rem] mt-4">{eventDetail?.value?.name}</p>
           </div>
           {isBuyClicked ? (
-            <Confirmation event={eventDetail} />
+            <Confirmation event={eventDetail} onError={handleError} />
           ) : (
             <>
               <div className="flex justify-between mt-5">
@@ -177,9 +182,7 @@ const EventDetailPage = ({ slug }) => {
 
                   {/* Button Buy */}
                   {eventDetail?.value?.closed ? (
-                    <button
-                      className="bg-gray-200 rounded-2xl text-center w-[150px] h-[50px] pointer-events-none"
-                    >
+                    <button className="bg-gray-200 rounded-2xl text-center w-[150px] h-[50px] pointer-events-none">
                       Closed
                     </button>
                   ) : (

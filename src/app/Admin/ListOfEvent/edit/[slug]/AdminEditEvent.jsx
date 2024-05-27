@@ -10,7 +10,7 @@ import {
 import "../../../AdminCSS/Admin.css";
 
 const AdminEditEvent = ({ slug }) => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [eventImageUrl, setEventImageUrl] = useState(null);
@@ -185,7 +185,7 @@ const AdminEditEvent = ({ slug }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/image/public/upload",
+        "https://leading-mallard-probable.ngrok-free.app/api/v1/image/public/upload",
         formData,
         {
           headers: {
