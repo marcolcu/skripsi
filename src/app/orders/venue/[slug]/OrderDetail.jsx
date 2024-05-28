@@ -131,7 +131,7 @@ const OrderDetail = ({ slug }) => {
                       {venueBookingDetail?.value?.status}
                     </td>
                   </tr>
-                  {eventRegisDetail?.value?.cancellationReason !== null && (
+                  {venueBookingDetail?.value?.cancellationReason !== null && (
                     <tr>
                       <th className="pl-0 px-4 py-2 text-left">
                         Cancellation Reason

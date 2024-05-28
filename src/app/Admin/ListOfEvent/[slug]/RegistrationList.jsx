@@ -8,10 +8,8 @@ import { Box, Alert, IconButton, Collapse } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const RegistrationList = ({ slug }) => {
-  const {
-    fetchEventBookingListAdmin,
-    eventBookingListAdmin,
-  } = useGetEventBookingListAdmin();
+  const { fetchEventBookingListAdmin, eventBookingListAdmin } =
+    useGetEventBookingListAdmin();
 
   const [data, setData] = useState([]);
   const { state } = useAppContext();
@@ -173,11 +171,11 @@ const RegistrationList = ({ slug }) => {
           options={options}
         />
       </div>
-      <Box className="fixed top-0 left-0 w-full">
+      <Box className="fixed top-0 left-0 w-full z-50">
         <Collapse in={openAlert}>
           <Alert
             severity="success"
-            className="flex items-center text-lg py-4 z-50"
+            className="flex items-center text-lg py-4"
             action={
               <IconButton
                 onClick={() => {
