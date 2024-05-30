@@ -88,12 +88,12 @@ const OrderDetail = ({ slug }) => {
                     </td>
                   </tr>
                   <tr>
-                    <th className="pl-0 px-4 py-2 text-left">Nama Peserta</th>
+                    <th className="pl-0 px-4 py-2 text-left">Participant Name</th>
                     <td className="px-4 py-2">{state?.user?.firstName}</td>
                   </tr>
                   <tr>
                     <th className="pl-0 px-4 py-2 text-left">
-                      Tanggan & Waktu Pemesanan
+                      Booking Date & Time
                     </th>
                     <td className="px-4 py-2">
                       {formatDate(venueBookingDetail?.value?.reservedDate)}{" "}
@@ -120,7 +120,7 @@ const OrderDetail = ({ slug }) => {
                     </td>
                   </tr>
                   <tr>
-                    <th className="pl-0 px-4 py-2 text-left">Tempat</th>
+                    <th className="pl-0 px-4 py-2 text-left">Location</th>
                     <td className="px-4 py-2">
                       {venueBookingDetail?.value?.venue?.location}
                     </td>
