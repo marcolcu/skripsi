@@ -326,7 +326,7 @@ const VenueDetailPage = ({ slug }) => {
                     disabled={!venueFiltered?.value?.available}
                   >
                     {!venueFiltered?.value?.available
-                      ? "Filtered First"
+                      ? "Filter First"
                       : "Book"}
                   </button>
                 </div>
