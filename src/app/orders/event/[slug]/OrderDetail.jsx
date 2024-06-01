@@ -115,13 +115,13 @@ const OrderDetail = ({ slug }) => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Event Date</td>
+                    <td>Start Date</td>
                     <td className="ps-5 font-bold">
                       {formatDate(eventRegisDetail?.value?.event?.dateHeld)}
                     </td>
                   </tr>
                   <tr>
-                    <td>Start Date</td>
+                    <td>Start Time</td>
                     <td className="ps-5 font-bold">
                       {formatStartTime(
                         eventRegisDetail?.value?.event?.dateHeld

@@ -104,7 +104,7 @@ const ListOfEvent = () => {
           if (value === true) {
             return (
               <button className="pointer-events-none">
-                <a className="pointer-events-none bg-green-200 text-green-600 p-1 px-5 text-center rounded-full w-[150px]">
+                <a className="pointer-events-none bg-white text-red-600 py-2.5 px-3 text-center rounded-md w-[150px]">
                   Disabled
                 </a>
               </button>
@@ -115,7 +115,7 @@ const ListOfEvent = () => {
               <button
                 onClick={() => handleDisableConfirmation(tableMeta.rowData[0])}
               >
-                <a className="bg-red-200 text-red-600 p-1 px-5 text-center rounded-full w-[150px]">
+                <a className="bg-red-600 text-white py-2.5 px-4 text-center rounded-md w-[150px]">
                   Disable
                 </a>
               </button>
@@ -150,7 +150,7 @@ const ListOfEvent = () => {
         customBodyRender: (value) => (
           <button className="">
             <a
-              className="inline-block bg-cyan-200 hover:bg-cyan-300 text-gray-800 font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+              className="inline-block bg-cyan-200 hover:bg-cyan-300 text-gray-800 font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
               href={`/Admin/ListOfEvent/edit/${value}`}
             >
               Edit
