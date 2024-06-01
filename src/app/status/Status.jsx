@@ -6,7 +6,6 @@ import { useEventConfirmation } from "@/services/useEventServices";
 
 const Status = () => {
   const [statusCode, setStatusCode] = useState(null);
-  // Mendapatkan parameter status_code dari URL
   const router = useRouter();
   const { state, dispatch } = useAppContext();
   const { postEventConfirmation, eventConfirmation, eventConfirmationLoading } =
@@ -37,12 +36,10 @@ const Status = () => {
   }, [state]);
 
   useEffect(() => {
-    console.log(statusCode);
     if (statusCode === "200") {
       router.prefetch("/status/finish");
       router.push("/status/finish");
-    } else if (statusCode === "201") {
-      console.log("masuk");
+    } else {
       router.prefetch("/status/failed");
       router.push("/status/failed");
     }
