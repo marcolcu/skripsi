@@ -106,19 +106,19 @@ const Confirmation = ({ event, onError }) => {
       <table className="table-auto">
         <tbody>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Nama Peserta</th>
+            <th className="pl-0 px-4 py-2 text-left">Participant Name</th>
             <td className="px-4 py-2">{state?.user?.firstName}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Tanggal Acara</th>
+            <th className="pl-0 px-4 py-2 text-left">Date Held</th>
             <td className="px-4 py-2">{formatDate(data?.dateHeld)}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Waktu Mulai</th>
+            <th className="pl-0 px-4 py-2 text-left">Start Time</th>
             <td className="px-4 py-2">{formatStartTime(data?.dateHeld)}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Tempat</th>
+            <th className="pl-0 px-4 py-2 text-left">Location</th>
             <td className="px-4 py-2">{data?.location}</td>
           </tr>
         </tbody>

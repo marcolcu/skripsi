@@ -174,6 +174,25 @@ const VenueDetailPage = ({ slug }) => {
 
   const timeOptions = generateTimeOptions();
 
+  const renderButtonOrMessage = () => {
+    if (venueFiltered?.value) {
+      if (venueFiltered.value.available === false) {
+        return "Already booked.";
+      } else {
+        return "Book";
+      }
+    } else {
+      return "Select filter";
+    }
+  };
+
+  const today = new Date();
+  const sevenDaysFromToday = new Date(today);
+  sevenDaysFromToday.setDate(sevenDaysFromToday.getDate() + 7);
+
+  const formattedToday = today.toISOString().split("T")[0];
+  const formattedMaxDate = sevenDaysFromToday.toISOString().split("T")[0];
+
   return (
     <div className="max-w-screen-xl mx-auto px-10">
       {loading ? (
@@ -217,7 +236,8 @@ const VenueDetailPage = ({ slug }) => {
                       className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                       value={reservedDate}
                       onChange={(e) => setReservedDate(e.target.value)}
-                      min={new Date().toISOString().split("T")[0]}
+                      min={formattedToday}
+                      max={formattedMaxDate}
                     />
 
                     <select
@@ -225,6 +245,9 @@ const VenueDetailPage = ({ slug }) => {
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
                     >
+                      <option value="" disabled hidden>
+                        Select a time
+                      </option>
                       {timeOptions.map((timeOption) => (
                         <option key={timeOption} value={timeOption}>
                           {timeOption}
@@ -325,9 +348,7 @@ const VenueDetailPage = ({ slug }) => {
                     onClick={buyClick}
                     disabled={!venueFiltered?.value?.available}
                   >
-                    {!venueFiltered?.value?.available
-                      ? "Filtered First"
-                      : "Book"}
+                    {renderButtonOrMessage()}
                   </button>
                 </div>
               </div>
