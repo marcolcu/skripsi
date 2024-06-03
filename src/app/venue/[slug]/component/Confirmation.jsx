@@ -26,11 +26,12 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
     const [date, time] = datetime.split(" ");
     const [day, month, year] = date.split("-").map(Number);
     const [hour, minute] = time.split(":").map(Number);
+    const paddedDay = String(day).padStart(2, "0");
     const paddedMonth = String(month).padStart(2, "0");
     const paddedMinute = String(minute).padStart(2, "0");
 
     return {
-      reservedDate: `${year}-${paddedMonth}-${day}`,
+      reservedDate: `${year}-${paddedMonth}-${paddedDay}`,
       hour,
       minute: paddedMinute,
     };
