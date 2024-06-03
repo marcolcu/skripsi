@@ -65,15 +65,15 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
       <table className="table-auto">
         <tbody>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Participant Name</th>
+            <th className="pl-0 px-4 py-2 text-left">Booked By</th>
             <td className="px-4 py-2">{state?.user?.firstName}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Booking Time</th>
+            <th className="pl-0 px-4 py-2 text-left">Date</th>
             <td className="px-4 py-2">{datetime}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Add on</th>
+            <th className="pl-0 px-4 py-2 text-left">Add ons</th>
             <td className="px-4 py-2">
               {selectedServices.length > 0 ? (
                 selectedServices.map((service, index) => (
