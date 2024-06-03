@@ -26,11 +26,12 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
     const [date, time] = datetime.split(" ");
     const [day, month, year] = date.split("-").map(Number);
     const [hour, minute] = time.split(":").map(Number);
+    const paddedDay = String(day).padStart(2, "0");
     const paddedMonth = String(month).padStart(2, "0");
     const paddedMinute = String(minute).padStart(2, "0");
 
     return {
-      reservedDate: `${year}-${paddedMonth}-${day}`,
+      reservedDate: `${year}-${paddedMonth}-${paddedDay}`,
       hour,
       minute: paddedMinute,
     };
@@ -59,15 +60,16 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
 
   return (
     <main>
+      <h1 className="font-bold text-xl my-9">Confirmation Page</h1>
       {/* Table */}
       <table className="table-auto">
         <tbody>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Nama Peserta</th>
+            <th className="pl-0 px-4 py-2 text-left">Participant Name</th>
             <td className="px-4 py-2">{state?.user?.firstName}</td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Waktu Pemesanan</th>
+            <th className="pl-0 px-4 py-2 text-left">Booking Time</th>
             <td className="px-4 py-2">{datetime}</td>
           </tr>
           <tr>
@@ -86,7 +88,7 @@ const Confirmation = ({ venue, datetime, selectedServices, duration }) => {
             </td>
           </tr>
           <tr>
-            <th className="pl-0 px-4 py-2 text-left">Tempat</th>
+            <th className="pl-0 px-4 py-2 text-left">Location</th>
             <td className="px-4 py-2">{data?.location}</td>
           </tr>
         </tbody>
