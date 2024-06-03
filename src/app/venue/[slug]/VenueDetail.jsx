@@ -174,6 +174,18 @@ const VenueDetailPage = ({ slug }) => {
 
   const timeOptions = generateTimeOptions();
 
+  const renderButtonOrMessage = () => {
+    if (venueFiltered?.value) {
+      if (venueFiltered.value.available === false) {
+        return "Already booked.";
+      } else {
+        return "Book";
+      }
+    } else {
+      return "Select filter";
+    }
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-10">
       {loading ? (
@@ -325,9 +337,7 @@ const VenueDetailPage = ({ slug }) => {
                     onClick={buyClick}
                     disabled={!venueFiltered?.value?.available}
                   >
-                    {!venueFiltered?.value?.available
-                      ? "Filter First"
-                      : "Book"}
+                    {renderButtonOrMessage()}
                   </button>
                 </div>
               </div>
