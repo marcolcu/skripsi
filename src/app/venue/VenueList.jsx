@@ -132,6 +132,13 @@ const VenueList = () => {
 
   const timeOptions = generateTimeOptions();
 
+  const today = new Date();
+  const sevenDaysFromToday = new Date(today);
+  sevenDaysFromToday.setDate(sevenDaysFromToday.getDate() + 7);
+
+  const formattedToday = today.toISOString().split("T")[0];
+  const formattedMaxDate = sevenDaysFromToday.toISOString().split("T")[0];
+
   return (
     <div className="max-w-screen-xl mx-auto px-10" style={{ height: "auto" }}>
       {loading ? (
@@ -145,22 +152,25 @@ const VenueList = () => {
                 className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                 value={reservedDate}
                 onChange={(e) => setReservedDate(e.target.value)}
-                min={new Date().toISOString().split("T")[0]}
+                min={formattedToday}
+                max={formattedMaxDate}
               />
 
               <div>
-                <input
-                  type="time"
+                <select
                   className="border border-gray-300 bg-white rounded-md shadow-sm w-[200px] py-2 px-3 h-[2.7rem] text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-opacity-50"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  list="time-options"
-                />
-                <datalist id="time-options">
+                >
+                  <option value="" disabled hidden>
+                    Select a time
+                  </option>
                   {timeOptions.map((timeOption) => (
-                    <option key={timeOption} value={timeOption} />
+                    <option key={timeOption} value={timeOption}>
+                      {timeOption}
+                    </option>
                   ))}
-                </datalist>
+                </select>
               </div>
 
               <div className="relative">
