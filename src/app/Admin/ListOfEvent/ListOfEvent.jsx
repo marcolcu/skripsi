@@ -104,7 +104,7 @@ const ListOfEvent = () => {
           if (value === true) {
             return (
               <button className="pointer-events-none">
-                <a className="pointer-events-none bg-white text-red-600 py-2.5 px-3 text-center rounded-md w-[150px]">
+                <a className="pointer-events-none text-red-600 py-2.5 px-3 text-center rounded-md w-[150px]">
                   Disabled
                 </a>
               </button>

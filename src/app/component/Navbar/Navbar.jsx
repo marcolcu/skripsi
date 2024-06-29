@@ -55,7 +55,9 @@ const Navbar = () => {
   return (
     <div
       className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40"
-      style={{ width: "-webkit-fill-available", width: "-moz-available" }}
+      style={{
+        width: "100%",
+      }}
     >
       <header
         className={`flex flex-col lg:flex-row justify-between items-center my-5 p-8 rounded-full ${
