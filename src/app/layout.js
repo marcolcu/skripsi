@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <ToastContainer />
         <Providers>
           <Navbar />
-          <main className="flex-grow my-5 z-[1]">{children}</main>
+          <main className="flex-grow my-5">{children}</main>
           <Footer />
         </Providers>
       </body>

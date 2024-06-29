@@ -145,7 +145,7 @@ const AdminEditVenue = ({ slug }) => {
 
     try {
       const response = await axios.post(
-        "https://leading-mallard-probable.ngrok-free.app/api/v1/image/public/upload",
+        "http://localhost:8080/api/v1/image/public/upload",
         formData,
         {
           headers: {
