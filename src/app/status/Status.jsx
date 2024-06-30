@@ -19,7 +19,7 @@ const Status = () => {
         setStatusCode(statusCode);
       }
     }
-  }, [statusCode, window]);
+  }, [statusCode]);
 
   useEffect(() => {
     if (state?.registrationCode) {
