@@ -15,9 +15,11 @@ const Status = () => {
     if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
       const statusCode = urlParams.get("status_code");
-      setStatusCode(statusCode);
+      if (statusCode !== null) {
+        setStatusCode(statusCode);
+      }
     }
-  }, []);
+  }, [statusCode, window]);
 
   useEffect(() => {
     if (state?.registrationCode) {
@@ -36,7 +38,7 @@ const Status = () => {
   }, [state]);
 
   useEffect(() => {
-    console.log(statusCode)
+    // console.log(statusCode);
     if (statusCode === "200") {
       router.prefetch("/status/finish");
       router.push("/status/finish");
