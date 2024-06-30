@@ -36,6 +36,7 @@ const Status = () => {
   }, [state]);
 
   useEffect(() => {
+    console.log(statusCode)
     if (statusCode === "200") {
       router.prefetch("/status/finish");
       router.push("/status/finish");
