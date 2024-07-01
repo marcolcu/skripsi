@@ -19,10 +19,10 @@ const Status = () => {
         setStatusCode(statusCode);
       }
     }
-  }, [statusCode]);
+  }, []);
 
   useEffect(() => {
-    if (state?.registrationCode) {
+    if (statusCode !== null && state?.registrationCode) {
       let statusMessage = statusCode === "200" ? "success" : "fail";
 
       postEventConfirmation({
@@ -35,18 +35,17 @@ const Status = () => {
         },
       });
     }
-  }, [state]);
+  }, [statusCode, state]);
 
   useEffect(() => {
-    // console.log(statusCode);
     if (statusCode === "200") {
       router.prefetch("/status/finish");
       router.push("/status/finish");
-    } else {
+    } else if (statusCode !== null) {
       router.prefetch("/status/failed");
       router.push("/status/failed");
     }
-  }, [eventConfirmation]);
+  }, [statusCode, eventConfirmation]);
 
   return (
     <div className="text-center h-[200px] flex items-center justify-center">
