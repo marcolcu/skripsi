@@ -52,6 +52,10 @@ const Navbar = () => {
     toast.success("Successfully logged out");
   };
 
+  useEffect(() => {
+    console.log("User state:", state.user);
+  }, [state.user]);
+
   return (
     <div
       className="max-w-screen-xl mx-auto px-5 sticky top-[20px] z-40"
@@ -123,17 +127,11 @@ const Navbar = () => {
               </>
             )}
 
-            {state?.token && state?.user?.userRole == "ROLE_ADMIN" && (
-              // User is logged in as an admin
+            {state?.token &&
+            state?.user?.userRole == "ROLE_ADMIN" &&
+            state?.user?.contributor == true ? (
+              // User is logged in as an admin (user) contributor
               <>
-                <li>
-                  <a
-                    href="/Admin/createVenue"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">Create Venue</span>
-                  </a>
-                </li>
                 <li>
                   <a
                     href="/Admin/createEvent"
@@ -142,23 +140,54 @@ const Navbar = () => {
                     <span className="font-semibold">Create Event</span>
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/Admin/ListOfVenue"
-                    className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
-                  >
-                    <span className="font-semibold">List of Venues</span>
-                  </a>
-                </li>
-                <li>
+                {/* <li>
                   <a
                     href="/Admin/ListOfEvent"
                     className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
                   >
                     <span className="font-semibold">List of Events</span>
                   </a>
-                </li>
+                </li> */}
               </>
+            ) : (
+              state?.token &&
+              state?.user?.userRole == "ROLE_ADMIN" && (
+                // User is logged in as an admin
+                <>
+                  <li>
+                    <a
+                      href="/Admin/createVenue"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    >
+                      <span className="font-semibold">Create Venue</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/Admin/createEvent"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    >
+                      <span className="font-semibold">Create Event</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/Admin/ListOfVenue"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    >
+                      <span className="font-semibold">List of Venues</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/Admin/ListOfEvent"
+                      className="flex lg:px-3 py-2 items-center text-black-600 hover:text-black-900 hover:underline hover:underline-offset-2 decoration-2"
+                    >
+                      <span className="font-semibold">List of Events</span>
+                    </a>
+                  </li>
+                </>
+              )
             )}
 
             {loading ? (
